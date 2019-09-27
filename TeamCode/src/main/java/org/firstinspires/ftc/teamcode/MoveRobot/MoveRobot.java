@@ -17,11 +17,11 @@ public class MoveRobot extends LinearOpMode {
         while (true) {
             // Baga viteza la motorul 1
             forMotor1.setPower(0);
-            forMotor1.setPower(gamepad2.left_stick_y);
+            forMotor1.setPower(gamepad1.left_stick_y);
 
             // Baga viteza la motorul 2
             forMotor2.setPower(0);
-            forMotor2.setPower(gamepad2.right_stick_y);
+            forMotor2.setPower(gamepad1.right_stick_y);
 
 
         }
