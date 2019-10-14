@@ -11,16 +11,16 @@ public class DriveRobot__ControlArm extends LinearOpMode
     @Override
     public void runOpMode() throws InterruptedException
     {
-        
+
         //Declara motoarele
-          //Pt. conducerea robotului
-            DcMotor Motor0_Drive = hardwareMap.get(DcMotor.class, "Motor0_Drive");
-            DcMotor Motor1_Drive = hardwareMap.get(DcMotor.class, "Motor1_Drive");
-            
-          //Pt. brat
-            DcMotor Motor2_ArmBase = hardwareMap.get(DcMotor.class, "Motor2_ArmBase");
-            DcMotor Motor3_ArmElbow = hardwareMap.get(DcMotor.class, "Motor3_ArmElbow");
-            
+        //Pt. conducerea robotului
+        DcMotor Motor0_Drive = hardwareMap.get(DcMotor.class, "Motor0_Drive");
+        DcMotor Motor1_Drive = hardwareMap.get(DcMotor.class, "Motor1_Drive");
+
+        //Pt. brat
+        DcMotor Motor2_ArmBase = hardwareMap.get(DcMotor.class, "Motor2_ArmBase");
+        DcMotor Motor3_ArmElbow = hardwareMap.get(DcMotor.class, "Motor3_ArmElbow");
+
         while (true) {
 
             // /////////// MISCAREA ROBOTULUI ///////////
@@ -52,7 +52,7 @@ public class DriveRobot__ControlArm extends LinearOpMode
             // //////////////////////////////////////////
 
 
-            
+
             // /////////// MISCAREA BRATULUI ////////////
 
 
@@ -74,17 +74,8 @@ public class DriveRobot__ControlArm extends LinearOpMode
             }
             // //////////////////////////////////////////
 
-            
-            
-        }    
+
+
+        }
     }
 }
-
-
-
-
-
-
-
-
-
