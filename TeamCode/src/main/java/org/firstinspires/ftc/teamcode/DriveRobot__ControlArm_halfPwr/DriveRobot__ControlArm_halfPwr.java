@@ -85,14 +85,14 @@ public class DriveRobot__ControlArm_halfPwr extends LinearOpMode
             Motor2_ArmBase.setPower((gamepad1.right_stick_x) / 3);
             //Motor3_ArmElbow.setPower(-(gamepad1.right_stick_y)/1.5);
 
-            if (gamepad1.right_stick_y > 0)
+            if (gamepad1.right_stick_y > 0.3)
             {
                 Motor3_ArmElbow.setPower(-(gamepad1.right_stick_y) / 3);
             }
 
             if (gamepad1.right_stick_y < 0)
             {
-                Motor3_ArmElbow.setPower(-gamepad1.right_stick_y);
+                Motor3_ArmElbow.setPower(-gamepad1.right_stick_y / 1.5);
             }
             // //////////////////////////////////////////
 
