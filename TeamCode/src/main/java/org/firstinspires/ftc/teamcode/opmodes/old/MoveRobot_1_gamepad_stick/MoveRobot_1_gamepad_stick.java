@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.MoveRobot_1_gamepad_stick;
+package org.firstinspires.ftc.teamcode.opmodes.old.MoveRobot_1_gamepad_stick;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
