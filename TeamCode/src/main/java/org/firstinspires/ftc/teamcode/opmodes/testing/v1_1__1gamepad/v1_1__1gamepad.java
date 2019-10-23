@@ -30,7 +30,8 @@ public class v1_1__1gamepad extends LinearOpMode
         CRServo Servo1_ClawR = hardwareMap.get(CRServo.class, "Servo1_ClawR");
         //endregion
 
-        while (true) {
+        while (true)
+        {
 
             //region MISCAREA ROBOTULUI
 
