@@ -26,23 +26,23 @@ public class TestingClaw extends LinearOpMode
             //region MISCAREA BRATULUI
             if (gamepad1.left_bumper)
             {
-                position = position + 0.1f;
+                position = position + 0.01f;
 
-//                if(position>1)
-//                {
-//                    position=1;
-//                }
-            }
+                if(position>1)
+                {
+                    position=1;
+                }
+            }else
+                if (gamepad1.right_bumper)
+                {
+                    position = position - 0.01f;
 
-            if (gamepad1.right_bumper)
-            {
-                position = position - 0.1f;
-
-//                if(position<0)
-//                {
-//                    position=0;
-//                }
-            }
+                  if(position<0)
+                   {
+                      position=0;
+                   }
+             }else
+                 position+=0;
 
             Servo0_ClawL.setPosition(position);
             Servo1_ClawR.setPosition(1 - position);
