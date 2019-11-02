@@ -32,7 +32,8 @@ public class TestingClaw extends LinearOpMode
                 {
                     position=1;
                 }
-            }else
+            }
+            else
                 if (gamepad1.right_bumper)
                 {
                     position = position - 0.01f;
@@ -41,15 +42,12 @@ public class TestingClaw extends LinearOpMode
                    {
                       position=0;
                    }
-             }else
+                }
+                else
                  position+=0;
 
             Servo0_ClawL.setPosition(position);
             Servo1_ClawR.setPosition(1 - position);
-
-//            System.out.println(position);
-            Log.i("MyActivity", "MyClass.getView() — get item number " + position);
-
             //endregion
 
         }
