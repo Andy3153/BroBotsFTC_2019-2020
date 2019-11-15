@@ -1,13 +1,12 @@
-package org.firstinspires.ftc.teamcode.opmodes.testing.v1_1__1gamepad;
+package org.firstinspires.ftc.teamcode.opmodes.testing.v2__1gp;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
-public class v1_1__1gamepad extends LinearOpMode
+public class v2__1gp extends LinearOpMode
 {
     @Override
     public void runOpMode() throws InterruptedException
@@ -18,39 +17,38 @@ public class v1_1__1gamepad extends LinearOpMode
                 halfPwrMD_y = gamepad1.left_stick_y / 1.5f,
                 halfPwrMA_x = gamepad1.right_stick_x / 1.5f,
                 halfPwrMA_y = gamepad1.right_stick_y / 1.5f,
-                clawPosition = 0.5f;
+                clawPosition = 0.5f,
+                armPosition = 0.5f;
         //endregion
 
         //region Declara motoarele
         //Motoare normale
           //Pt. conducerea robotului
-          DcMotor Motor0_Drive = hardwareMap.get(DcMotor.class, "Motor0_Drive");
-          DcMotor Motor1_Drive = hardwareMap.get(DcMotor.class, "Motor1_Drive");
+          DcMotor H1Motor0_Drive  = hardwareMap.get(DcMotor.class, "H1Motor0_Drive ");
+          DcMotor H1Motor1_Drive  = hardwareMap.get(DcMotor.class, "H1Motor1_Drive ");
 
-          //Pt. brat
-          DcMotor Motor2_ArmBase = hardwareMap.get(DcMotor.class, "Motor2_ArmBase");
-          DcMotor Motor3_ArmElbow = hardwareMap.get(DcMotor.class, "Motor3_ArmElbow");
+          //Pt. ata
+          DcMotor H2Motor0_ArmString = hardwareMap.get(DcMotor.class, "H2Motor0_ArmString");
 
         //Servo-uri
-          //Pt. gheara
-          Servo Servo0_ClawL = hardwareMap.get(Servo.class, "Servo0_ClawL");
-          Servo Servo1_ClawR = hardwareMap.get(Servo.class, "Servo1_ClawR");
+          //Pt. baza
+        Servo H2Servo0_ArmBase= hardwareMap.get(Servo.class, "H2Servo0_ArmBase");
+
+        //Pt. gheara
+          Servo H2Servo1_ClawL = hardwareMap.get(Servo.class, "H2Servo1_ClawL");
+          Servo H2Servo2_ClawR = hardwareMap.get(Servo.class, "H2Servo2_ClawR");
         //endregion
-
-
-
+        
         while (true)
         {
-
-
+            
             //region Seteaza curentul la 0 la motoare
               //Pt. roti
-              Motor0_Drive.setPower(0);
-              Motor1_Drive.setPower(0);
+              H1Motor0_Drive .setPower(0);
+              H1Motor1_Drive .setPower(0);
 
               //Pt. brat
-              Motor2_ArmBase.setPower(0);
-              Motor3_ArmElbow.setPower(0);
+              H2Motor0_ArmString.setPower(0);
             //endregion
             
             //region Butoanele pt. miscat mai incet
@@ -66,46 +64,30 @@ public class v1_1__1gamepad extends LinearOpMode
                   gamepad1.right_stick_y = halfPwrMA_y;
               }
             //endregion
-
-            
             
             //region Miscarea robotului
               //Miscarea fata-spate
-              Motor0_Drive.setPower(-gamepad1.left_stick_y);
-              Motor1_Drive.setPower(gamepad1.left_stick_y);
+              H1Motor0_Drive .setPower(-gamepad1.left_stick_y);
+              H1Motor1_Drive .setPower(gamepad1.left_stick_y);
 
               //Miscarea pe diagonala pe stanga
               if (gamepad1.left_stick_x < 0)
               {
-                  Motor0_Drive.setPower(gamepad1.left_stick_x);
-                  Motor1_Drive.setPower(gamepad1.left_stick_x);
+                  H1Motor0_Drive .setPower(gamepad1.left_stick_x);
+                  H1Motor1_Drive .setPower(gamepad1.left_stick_x);
               }
 
               //Miscarea pe diagonala pe dreapta
               if (gamepad1.left_stick_x > 0)
               {
-                  Motor0_Drive.setPower(gamepad1.left_stick_x);
-                  Motor1_Drive.setPower(gamepad1.left_stick_x);
+                  H1Motor0_Drive .setPower(gamepad1.left_stick_x);
+                  H1Motor1_Drive .setPower(gamepad1.left_stick_x);
               }
             //endregion
-
             
             //region Miscarea bratului
-              //Pt. baza
-              Motor2_ArmBase.setPower((gamepad1.right_stick_x) / 4);
-
-
-              //Pt. cot
-              if (gamepad1.right_stick_y > 0)
-              {
-                  Motor3_ArmElbow.setPower((gamepad1.right_stick_y) / 4);
-              }
-
-              if (gamepad1.right_stick_y < 0)
-              {
-                  Motor3_ArmElbow.setPower(gamepad1.right_stick_y * 3);
-              }
-
+              //Pt. ata
+              H2Motor0_ArmString.setPower(gamepad1.right_stick_x);
 
               //Pt. gheara
               if (gamepad1.left_bumper)
@@ -130,13 +112,12 @@ public class v1_1__1gamepad extends LinearOpMode
               else
                   clawPosition+=0;
 
-              Servo0_ClawL.setPosition(clawPosition);
-              Servo1_ClawR.setPosition(1 - clawPosition);
+              H2Servo1_ClawL.setPosition(clawPosition);
+              H2Servo2_ClawR.setPosition(1 - clawPosition);
             
             
             //endregion
-
-
+            
         }
     }
 
