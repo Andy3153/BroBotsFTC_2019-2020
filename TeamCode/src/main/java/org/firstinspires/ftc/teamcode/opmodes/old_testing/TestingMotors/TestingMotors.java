@@ -1,11 +1,11 @@
-package org.firstinspires.ftc.teamcode.opmodes.testing.TestingMotors;
+package org.firstinspires.ftc.teamcode.opmodes.old_testing.TestingMotors;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp
-public class TestingMotors extends LinearOpMode
+//@TeleOp
+class TestingMotors extends LinearOpMode
 {
 
 

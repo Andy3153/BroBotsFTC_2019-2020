@@ -1,12 +1,12 @@
-package org.firstinspires.ftc.teamcode.opmodes.stable.v1.0_1gamepad;
+package org.firstinspires.ftc.teamcode.opmodes.old_stable.v1_0__1gamepad;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp
-public class Final_1gamepad extends LinearOpMode
+//@TeleOp
+public class v1_0__1gamepad extends LinearOpMode
 {
     @Override
     public void runOpMode() throws InterruptedException

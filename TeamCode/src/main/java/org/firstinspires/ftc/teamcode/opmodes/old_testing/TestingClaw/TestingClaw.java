@@ -1,11 +1,11 @@
-package org.firstinspires.ftc.teamcode.opmodes.testing.TestingClaw;
+package org.firstinspires.ftc.teamcode.opmodes.old_testing.TestingClaw;
 
 import android.util.Log;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp
+//@TeleOp
 public class TestingClaw extends LinearOpMode
 {
     @Override

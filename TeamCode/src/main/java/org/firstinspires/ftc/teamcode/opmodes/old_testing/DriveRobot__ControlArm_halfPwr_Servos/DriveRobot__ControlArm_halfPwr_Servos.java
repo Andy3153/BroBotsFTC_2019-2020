@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp
-public class DriveRobot__ControlArm_halfPwr_Servos extends LinearOpMode
+//@TeleOp
+class DriveRobot__ControlArm_halfPwr_Servos extends LinearOpMode
 {
     @Override
     public void runOpMode() throws InterruptedException

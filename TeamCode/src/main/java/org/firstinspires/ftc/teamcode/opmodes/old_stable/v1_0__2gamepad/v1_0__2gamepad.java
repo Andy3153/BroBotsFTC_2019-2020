@@ -1,12 +1,12 @@
-package org.firstinspires.ftc.teamcode.opmodes.testing.v1_0__1gamepad;
+package org.firstinspires.ftc.teamcode.opmodes.old_stable.v1_0__2gamepad;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp
-public class v1_0__1gamepad extends LinearOpMode
+//@TeleOp
+public class v1_0__2gamepad extends LinearOpMode
 {
     @Override
     public void runOpMode() throws InterruptedException
@@ -85,15 +85,15 @@ public class v1_0__1gamepad extends LinearOpMode
             Motor2_ArmBase.setPower(0);
 
             //Opereaza bratul
-            Motor2_ArmBase.setPower((gamepad1.right_stick_x) / 3);
+            Motor2_ArmBase.setPower((gamepad2.right_stick_x) / 3);
 
-            if (gamepad1.left_bumper)
+            if (gamepad2.left_bumper)
             {
                 Servo1_Claw.setPower(-1);
             }
             else
             {
-                if (gamepad1.right_bumper)
+                if (gamepad2.right_bumper)
                 {
                     Servo1_Claw.setPower(1);
                 }
