@@ -40,13 +40,21 @@ public class M1RC34_v2__testing extends LinearOpMode
     @Override
     public void runOpMode() throws InterruptedException
     {
-        //region Declara variabilele
-          float halfPwrMD_x = gamepad1.left_stick_x / 1.5f,
-                halfPwrMD_y = gamepad1.left_stick_y / 1.5f,
-                halfPwrMA_x = gamepad1.right_stick_x / 1.5f,
-                halfPwrMA_y = gamepad1.right_stick_y / 1.5f,
-                clawPosition = 0.5f,
-                armPosition = 0.38f;
+
+        //region Declara variabilele actualizate numai odata
+        float
+              //Pt. pozitia ghearei
+              clawPosition = 0.5f,
+
+              //Pt. pozitia bratului
+              armPosition = 0.39499992f
+                      
+//              //Pt. jumatate din putere
+//              halfPwrMD_x = driveSpeed_x / 1.5f,
+//              halfPwrMD_y = driveSpeed_y / 1.5f,
+//              halfPwrMA_x = gamepad1.right_stick_x / 1.5f,
+//              halfPwrMA_y = gamepad1.right_stick_y / 1.5f,
+        ;
         //endregion
 
         //region Declara motoarele
@@ -69,6 +77,14 @@ public class M1RC34_v2__testing extends LinearOpMode
         
         while (true)
         {
+            //region Declara variabilele actualizate constant
+            float 
+                  //Pt. miscarea robotului  
+                  driveSpeed_x = gamepad1.left_stick_x, 
+                  driveSpeed_y = gamepad1.left_stick_y
+            ;
+            //endregion
+            
             //region Seteaza curentul la 0 la motoare
               //Pt. roti
               H1Motor0_Drive.setPower(0);
@@ -78,30 +94,30 @@ public class M1RC34_v2__testing extends LinearOpMode
               H2Motor0_ArmString.setPower(0);
             //endregion
             
-            //region Butoanele pt. miscat mai incet
-              if (gamepad1.left_trigger > 0)
-              {
-                  gamepad1.left_stick_x = halfPwrMD_x;
-                  gamepad1.left_stick_y = halfPwrMD_y;
-              }
-
-              if (gamepad1.right_trigger > 0)
-              {
-                  gamepad1.right_stick_x = halfPwrMA_x;
-                  gamepad1.right_stick_y = halfPwrMA_y;
-              }
-            //endregion
+//            //region Butoanele pt. miscat mai incet
+//              if (gamepad1.left_trigger > 0)
+//              {
+//                  driveSpeed_x = halfPwrMD_x;
+//                  driveSpeed_y = halfPwrMD_y;
+//              }
+//
+//              if (gamepad1.right_trigger > 0)
+//              {
+//                  gamepad1.right_stick_x = halfPwrMA_x;
+//                  gamepad1.right_stick_y = halfPwrMA_y;
+//              }
+//            //endregion
             
             //region Miscarea robotului
               //Miscarea fata-spate
-              H1Motor0_Drive.setPower(-gamepad1.left_stick_y);
-              H1Motor1_Drive.setPower(gamepad1.left_stick_y);
+              H1Motor0_Drive.setPower(-driveSpeed_y);
+              H1Motor1_Drive.setPower(driveSpeed_y);
 
               //Miscarea stanga-dreapta
-              if (gamepad1.left_stick_x != 0)
+              if (driveSpeed_x != 0)
               {
-                  H1Motor0_Drive.setPower(gamepad1.left_stick_x);
-                  H1Motor1_Drive.setPower(gamepad1.left_stick_x);
+                  H1Motor0_Drive.setPower(driveSpeed_x);
+                  H1Motor1_Drive.setPower(driveSpeed_x);
               }
 
             //endregion
@@ -187,7 +203,7 @@ public class M1RC34_v2__testing extends LinearOpMode
                   H2Motor0_ArmString.setPower(0);
 
                   //Pt. brat
-                  armPosition = 0.38f;
+                  armPosition = 0.39499992f;
 
                   //Pt. gheara
                   clawPosition = 0.5f;
@@ -203,6 +219,20 @@ public class M1RC34_v2__testing extends LinearOpMode
               {
                   start();
               }
+            //endregion
+
+            //region Telemetrie
+              //Viteza robotului
+              telemetry.addData("Viteza robotului", (1 - driveSpeed_x + driveSpeed_y));
+
+              //Pozitia bratului
+              telemetry.addData("Pozitia bratului", armPosition);
+
+              //Pozitia ghearei
+              telemetry.addData("Pozitia ghearei", clawPosition);
+
+              //Update
+              telemetry.update();
             //endregion
         }
     }
