@@ -34,20 +34,21 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp
+@TeleOp(name="Testing", group ="Concept")
 public class M1RC34_v2__testing extends LinearOpMode
 {
     @Override
     public void runOpMode() throws InterruptedException
     {
+        float clawInitPos=0.5f, armInitPos=0.39499992f;
 
         //region Declara variabilele actualizate numai odata
         float
               //Pt. pozitia ghearei
-              clawPosition = 0.5f,
+              clawPosition = clawInitPos,
 
               //Pt. pozitia bratului
-              armPosition = 0.39499992f
+              armPosition = armInitPos
                       
 //              //Pt. jumatate din putere
 //              halfPwrMD_x = driveSpeed_x / 1.5f,
@@ -203,10 +204,10 @@ public class M1RC34_v2__testing extends LinearOpMode
                   H2Motor0_ArmString.setPower(0);
 
                   //Pt. brat
-                  armPosition = 0.39499992f;
+                  armPosition = armInitPos;
 
                   //Pt. gheara
-                  clawPosition = 0.5f;
+                  clawPosition = clawInitPos;
               }
 
               //Start / stop pentru tot codul
@@ -223,10 +224,10 @@ public class M1RC34_v2__testing extends LinearOpMode
 
             //region Telemetrie
               //Viteza robotului
-              telemetry.addData("Viteza robotului", (1 - driveSpeed_x + driveSpeed_y));
+              telemetry.addData("Viteza robotului", 10*(1 - driveSpeed_x + driveSpeed_y));
 
               //Pozitia bratului
-              telemetry.addData("Pozitia bratului", armPosition);
+              telemetry.addData("Pozitia bratului", 1+armPosition);
 
               //Pozitia ghearei
               telemetry.addData("Pozitia ghearei", clawPosition);
