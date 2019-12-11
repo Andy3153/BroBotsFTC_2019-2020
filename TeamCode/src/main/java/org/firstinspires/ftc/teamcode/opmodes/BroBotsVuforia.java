@@ -34,6 +34,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.RobotLog;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -231,6 +232,11 @@ public class BroBotsVuforia extends LinearOpMode {
         DcMotor H1Motor0_Drive  = hardwareMap.get(DcMotor.class, "H1Motor0_Drive ");
         DcMotor H1Motor1_Drive  = hardwareMap.get(DcMotor.class, "H1Motor1_Drive ");
 
+        Servo H2Servo0_ArmBase= hardwareMap.get(Servo.class, "H2Servo0_ArmBase");
+
+        Servo H2Servo1_ClawL = hardwareMap.get(Servo.class, "H2Servo1_ClawL");
+        Servo H2Servo2_ClawR = hardwareMap.get(Servo.class, "H2Servo2_ClawR");
+
 
         while (opModeIsActive())
         {
@@ -254,10 +260,32 @@ public class BroBotsVuforia extends LinearOpMode {
             }
             telemetry.update();
 
-            //Activat mpotoare
-            H1Motor0_Drive.setPower(0.2f);
-            H1Motor1_Drive.setPower(-0.2f);
 
+            //Activat servouri
+            H2Servo0_ArmBase.setPosition(0.4299995f);
+
+            H2Servo1_ClawL.setPosition(0);
+            H2Servo2_ClawR.setPosition(1 - 0);
+
+            //Activat motoare
+            H1Motor0_Drive.setPower(1);
+            H1Motor1_Drive.setPower(-1);
+            sleep(1000);
+
+            H1Motor0_Drive.setPower(-1);
+            H1Motor1_Drive.setPower(-1);
+            sleep(100);
+
+            H1Motor0_Drive.setPower(1);
+            H1Motor1_Drive.setPower(-1);
+            sleep(1000);
+
+            H1Motor0_Drive.setPower(1);
+            H1Motor1_Drive.setPower(1);
+            sleep(100);
+
+            H1Motor0_Drive.setPower(1);
+            H1Motor1_Drive.setPower(-1);
         }
     }
 

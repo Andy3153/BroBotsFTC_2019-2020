@@ -34,21 +34,23 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name="Testing", group ="Concept")
+@TeleOp(name="Testing", group="Concept")
 public class M1RC34_v2__testing extends LinearOpMode
 {
     @Override
     public void runOpMode() throws InterruptedException
     {
-        float clawInitPos=0.5f, armInitPos=0.39499992f;
+        //float clawInitPos=0.47f, armInitPos=1.4299995f;
 
         //region Declara variabilele actualizate numai odata
         float
               //Pt. pozitia ghearei
-              clawPosition = clawInitPos,
+              clawInitPos=0.47f,clawMaxPos=0.5899999f, clawMinPos=0,
+              clawPos = clawInitPos,
 
               //Pt. pozitia bratului
-              armPosition = armInitPos
+              armInitPos=0.4299995f, armMaxPos=0.547998f, armMinPos=0.4299995f,
+              armPos = armInitPos
                       
 //              //Pt. jumatate din putere
 //              halfPwrMD_x = driveSpeed_x / 1.5f,
@@ -140,52 +142,29 @@ public class M1RC34_v2__testing extends LinearOpMode
               //region Pt. brat
               if (gamepad1.dpad_up)
               {
-                  armPosition = armPosition + 0.001f;
-
-                  if(armPosition > 1)
-                  {
-                      armPosition = 1;
-                  }
+                  armPos = armPos>armMaxPos?armMaxPos:armPos+0.001f;
               }
-              else
-              if (gamepad1.dpad_down)
+              else if (gamepad1.dpad_down)
               {
-                  armPosition = armPosition - 0.001f;
-
-                  if(armPosition < 0)
-                  {
-                      armPosition = 0;
-                  }
+                  armPos = armPos<armMinPos?armMinPos:armPos-0.001f;
               }
-              else armPosition += 0;
 
-              H2Servo0_ArmBase.setPosition(armPosition);
+              H2Servo0_ArmBase.setPosition(armPos);
             //endregion
 
               //region Pt. gheara
               if (gamepad1.left_bumper)
               {
-                  clawPosition = clawPosition + 0.01f;
-
-                  if(clawPosition > 1)
-                  {
-                      clawPosition = 1;
-                  }
+                    clawPos=clawPos>clawMaxPos?clawMaxPos:clawPos+0.01f;
               }
               else
               if (gamepad1.right_bumper)
               {
-                  clawPosition = clawPosition - 0.01f;
-
-                  if(clawPosition < 0)
-                  {
-                      clawPosition = 0;
-                  }
+                  clawPos = clawPos<clawMinPos?clawMinPos:clawPos-0.01f;
               }
-              else clawPosition += 0;
 
-              H2Servo1_ClawL.setPosition(clawPosition);
-              H2Servo2_ClawR.setPosition(1 - clawPosition);
+              H2Servo1_ClawL.setPosition(clawPos);
+              H2Servo2_ClawR.setPosition(1 - clawPos);
               //endregion
             //endregion
 
@@ -204,10 +183,10 @@ public class M1RC34_v2__testing extends LinearOpMode
                   H2Motor0_ArmString.setPower(0);
 
                   //Pt. brat
-                  armPosition = armInitPos;
+                  armPos = armInitPos;
 
                   //Pt. gheara
-                  clawPosition = clawInitPos;
+                  clawPos = clawInitPos;
               }
 
               //Start / stop pentru tot codul
@@ -227,10 +206,10 @@ public class M1RC34_v2__testing extends LinearOpMode
               telemetry.addData("Viteza robotului", 10*(1 - driveSpeed_x + driveSpeed_y));
 
               //Pozitia bratului
-              telemetry.addData("Pozitia bratului", 1+armPosition);
+              telemetry.addData("Pozitia bratului", 1+armPos);
 
               //Pozitia ghearei
-              telemetry.addData("Pozitia ghearei", clawPosition);
+              telemetry.addData("Pozitia ghearei", clawPos);
 
               //Update
               telemetry.update();
