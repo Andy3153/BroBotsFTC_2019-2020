@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode.opmodes;
+package org.firstinspires.ftc.teamcode.opmodes.testing.BroBotsVuforia;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -53,17 +53,52 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Autonomous(name="Autonomy", group ="Concept")
-//@Disabled
-public class BroBotsVuforia extends LinearOpMode {
+public class BroBotsVuforia extends LinearOpMode
+{
 
+    DcMotor H1Motor1_Drive, H1Motor0_Drive;
+
+    public void goLeft(float power, int miliseconds)
+    {
+        H1Motor0_Drive.setPower(power);
+        H1Motor1_Drive.setPower(power);
+        sleep(miliseconds);
+    }
+
+    public void goRight(float power, int miliseconds)
+    {
+        H1Motor0_Drive.setPower(-power);
+        H1Motor1_Drive.setPower(-power);
+        sleep(miliseconds);
+    }
+
+    public void goForward(float power, int miliseconds)
+    {
+        H1Motor0_Drive.setPower(power);
+        H1Motor1_Drive.setPower(-power);
+        sleep(miliseconds);
+    }
+
+    public void goBackwards(float power, int miliseconds)
+    {
+        H1Motor0_Drive.setPower(-power);
+        H1Motor1_Drive.setPower(power);
+        sleep(miliseconds);
+    }
+
+    //region nuj
     public String VUFORIA_KEY="AUBpzCP/////AAABmVA9gBBLJ0mknFkjJAvfbZMgigw65DTNLvb+ioQTKRe9fL52yAllQQ1e4HJhxjpgoslb9Wpxa9dQrSQ+EWkybOYm0TUyl8uk+MyG2GAtxyPOUFOylH5byYHKzAVp8gODnBVDsU0Xfbs7D0wIFmP/QTyz2mZgdWPTA3y0QdBBKcWeksmWMsjNVvtO5HtYrm82FolMY6GFi/7m7uoAicBD/OwCEvknmwm1Qw6FD5HhAnqjkmkSK3TM1XqtJgVuaDNE+ay2NpMBJw63CBKYf/p4Jdljdp1BwFOf7w4IizWsZ+Ix5WNe5r2SmH25VR70eoUrmpS4tO612b30yztLiS/CmMC3+Axx7vYaqJ6kLPWWQ0C/";
     public static final String TAG = "Vuforia";
     OpenGLMatrix lastLocation = null;
 
     VuforiaLocalizer vuforia;
+    //endregion
+    @Override public void runOpMode()
+    {
+        H1Motor0_Drive  = hardwareMap.get(DcMotor.class, "H1Motor0_Drive ");
+        H1Motor1_Drive= hardwareMap.get(DcMotor.class, "H1Motor1_Drive ");
 
-    @Override public void runOpMode() {
-
+        //region nuj
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
 
@@ -227,20 +262,49 @@ public class BroBotsVuforia extends LinearOpMode {
 
         /** Start tracking the data sets we care about. */
         stonesAndChips.activate();
+        //endregion
 
-        //Declarat mootoare
-        DcMotor H1Motor0_Drive  = hardwareMap.get(DcMotor.class, "H1Motor0_Drive ");
-        DcMotor H1Motor1_Drive  = hardwareMap.get(DcMotor.class, "H1Motor1_Drive ");
+        //region Declara variabilele actualizate numai odata
+        float
+                //Pt. pozitia ghearei
+                clawInitPos=0.47f,     clawMaxPos=0.5899999f, clawMinPos=0,
+                clawPos = clawInitPos,
 
+                //Pt. pozitia bratului
+                armInitPos=0.4299995f, armMaxPos=0.547998f,   armMinPos=0.4299995f,
+                armPos = armInitPos,
+
+                //Pt. miscarea robotului
+                driveSpeed_x = 0,
+                driveSpeed_y = 0
+        ;
+        //endregion
+
+        //region Declara motoarele
+        //Motoare normale
+        //Pt. conducerea robotului
+
+        //Pt. ata
+        DcMotor H2Motor0_ArmString = hardwareMap.get(DcMotor.class, "H2Motor0_ArmString");
+
+        //Servo-uri
+        //Pt. baza
         Servo H2Servo0_ArmBase= hardwareMap.get(Servo.class, "H2Servo0_ArmBase");
 
+        //Pt. gheara
         Servo H2Servo1_ClawL = hardwareMap.get(Servo.class, "H2Servo1_ClawL");
         Servo H2Servo2_ClawR = hardwareMap.get(Servo.class, "H2Servo2_ClawR");
+        //endregion
 
+        //region Seteaza pozitia ghearei
+        sleep(1000);
+        clawPos = 0;
+        //endregion
+        H2Servo0_ArmBase.setPosition(armMinPos);
 
-        while (opModeIsActive())
-        {
-
+        /*while (opModeIsActive())
+        {*/
+            //region nuj
             for (VuforiaTrackable trackable : allTrackables) {
                 telemetry.addData(trackable.getName(), ((VuforiaTrackableDefaultListener)trackable.getListener()).isVisible() ? "Visible" : "Not Visible");    //
 
@@ -249,7 +313,6 @@ public class BroBotsVuforia extends LinearOpMode {
                     lastLocation = robotLocationTransform;
                 }
             }
-
              // Provide feedback as to where the robot was last located (if we know).
 
             if (lastLocation != null) {
@@ -259,36 +322,103 @@ public class BroBotsVuforia extends LinearOpMode {
                 telemetry.addData("Pos", "Unknown");
             }
             telemetry.update();
+            //endregion
 
+            //region Miscarea robotului
+            //Miscarea fata-spate
+            H1Motor0_Drive.setPower(-driveSpeed_y);
+            H1Motor1_Drive.setPower(driveSpeed_y);
 
-            //Activat servouri
-            H2Servo0_ArmBase.setPosition(0.4299995f);
+            //Miscarea stanga-dreapta
+            if (driveSpeed_x != 0)
+            {
+                H1Motor0_Drive.setPower(-driveSpeed_x);
+                H1Motor1_Drive.setPower(-driveSpeed_x);
+            }
+            //endregion
 
-            H2Servo1_ClawL.setPosition(0);
-            H2Servo2_ClawR.setPosition(1 - 0);
+            //region Miscarea bratului
+            //region Pt. brat
+            H2Servo0_ArmBase.setPosition(armPos);
+            //endregion
 
-            //Activat motoare
-            H1Motor0_Drive.setPower(1);
-            H1Motor1_Drive.setPower(-1);
-            sleep(1000);
+            //region Pt. gheara
+            H2Servo1_ClawL.setPosition(clawPos);
+            H2Servo2_ClawR.setPosition(1 - clawPos);
+            //endregion
+            //endregion
 
-            H1Motor0_Drive.setPower(-1);
-            H1Motor1_Drive.setPower(-1);
-            sleep(100);
+            //region Automat cica
+            clawPos = clawInitPos;
+            armPos = 0.57f;
 
-            H1Motor0_Drive.setPower(1);
-            H1Motor1_Drive.setPower(-1);
-            sleep(1000);
+            //ACTUAL COMMANDS
+            /*goLeft(1, 500);
+            goForward(1, 1000);
+            goRight(1, 500);
+            goBackwards(1, 1000);*/
 
-            H1Motor0_Drive.setPower(1);
-            H1Motor1_Drive.setPower(1);
-            sleep(100);
+            goRight(1, 540);
+            goForward(1, 300);
+            goLeft(1, 540);
+            goForward(1, 750);
+            goLeft(1, 270);
+            goForward(1, 150);
+            goLeft(1, 250);
+            goForward(0.5f, 100);
+            //endregion
 
-            H1Motor0_Drive.setPower(1);
-            H1Motor1_Drive.setPower(-1);
+            //region Telemetrie
+            //Viteza robotului
+            telemetry.addData("Viteza robotului", 10*(1 - driveSpeed_x + driveSpeed_y));
+
+            //Pozitia bratului
+            telemetry.addData("Pozitia bratului", 1 + armPos);
+
+            //Pozitia ghearei
+            telemetry.addData("Pozitia ghearei", clawPos);
+
+            //Update
+            telemetry.update();
+            //endregion
+//            //region Seteaza curentul la 0 la motoare
+//            //Pt. roti
+//            H1Motor0_Drive.setPower(0);
+//            H1Motor1_Drive.setPower(0);
+//
+//            //Pt. brat
+//            H2Motor0_ArmString.setPower(0);
+//            //endregion
+
+//            //Activat servouri
+//            H2Servo0_ArmBase.setPosition(0.4299995f);
+//
+//            H2Servo1_ClawL.setPosition(0);
+//            H2Servo2_ClawR.setPosition(1 - 0);
+//
+//            //Activat motoare
+//            H1Motor0_Drive.setPower(1);
+//            H1Motor1_Drive.setPower(-1);
+//            sleep(1000);
+//
+//            H1Motor0_Drive.setPower(-1);
+//            H1Motor1_Drive.setPower(-1);
+//            sleep(100);
+//
+//            H1Motor0_Drive.setPower(1);
+//            H1Motor1_Drive.setPower(-1);
+//            sleep(1000);
+//
+//            H1Motor0_Drive.setPower(1);
+//            H1Motor1_Drive.setPower(1);
+//            sleep(100);
+//
+//            H1Motor0_Drive.setPower(1);
+//            H1Motor1_Drive.setPower(-1);
+
         }
-    }
-
+    //}
+    //region nuj
     /**
      * A simple utility that extracts positioning information from a transformation matrix
      * and formats it in a form palatable to a human being.
@@ -296,5 +426,5 @@ public class BroBotsVuforia extends LinearOpMode {
     String format(OpenGLMatrix transformationMatrix) {
         return transformationMatrix.formatAsTransform();
     }
-
+    //endregion
 }

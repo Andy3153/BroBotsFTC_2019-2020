@@ -119,8 +119,8 @@ public class M1RC34_v2__testing extends LinearOpMode
               //Miscarea stanga-dreapta
               if (driveSpeed_x != 0)
               {
-                  H1Motor0_Drive.setPower(driveSpeed_x);
-                  H1Motor1_Drive.setPower(driveSpeed_x);
+                  H1Motor0_Drive.setPower(-driveSpeed_x);
+                  H1Motor1_Drive.setPower(-driveSpeed_x);
               }
 
             //endregion
