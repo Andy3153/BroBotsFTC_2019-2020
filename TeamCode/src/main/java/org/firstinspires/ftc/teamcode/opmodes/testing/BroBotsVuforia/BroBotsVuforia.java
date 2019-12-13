@@ -56,7 +56,8 @@ import java.util.List;
 public class BroBotsVuforia extends LinearOpMode
 {
 
-    DcMotor H1Motor1_Drive, H1Motor0_Drive;
+    DcMotor H1Motor1_Drive, H1Motor0_Drive, H2Motor0_ArmString;
+    Servo H2Servo0_ArmBase, H2Servo1_ClawL, H2Servo2_ClawR;
 
     public void goLeft(float power, int miliseconds)
     {
@@ -84,6 +85,18 @@ public class BroBotsVuforia extends LinearOpMode
         H1Motor0_Drive.setPower(-power);
         H1Motor1_Drive.setPower(power);
         sleep(miliseconds);
+    }
+
+    public void catchCube()
+    {
+        H2Servo1_ClawL.setPosition(0);
+        H2Servo2_ClawR.setPosition(1);
+        H2Servo0_ArmBase.setPosition(0.432f);
+        sleep(1650);
+        H2Servo1_ClawL.setPosition(0.47f);
+        H2Servo2_ClawR.setPosition(0.53f);
+        sleep(300);
+        H2Servo0_ArmBase.setPosition(0.5f);
     }
 
     //region nuj
@@ -285,15 +298,15 @@ public class BroBotsVuforia extends LinearOpMode
         //Pt. conducerea robotului
 
         //Pt. ata
-        DcMotor H2Motor0_ArmString = hardwareMap.get(DcMotor.class, "H2Motor0_ArmString");
+        H2Motor0_ArmString = hardwareMap.get(DcMotor.class, "H2Motor0_ArmString");
 
         //Servo-uri
         //Pt. baza
-        Servo H2Servo0_ArmBase= hardwareMap.get(Servo.class, "H2Servo0_ArmBase");
+        H2Servo0_ArmBase= hardwareMap.get(Servo.class, "H2Servo0_ArmBase");
 
         //Pt. gheara
-        Servo H2Servo1_ClawL = hardwareMap.get(Servo.class, "H2Servo1_ClawL");
-        Servo H2Servo2_ClawR = hardwareMap.get(Servo.class, "H2Servo2_ClawR");
+        H2Servo1_ClawL = hardwareMap.get(Servo.class, "H2Servo1_ClawL");
+        H2Servo2_ClawR = hardwareMap.get(Servo.class, "H2Servo2_ClawR");
         //endregion
 
         //region Seteaza pozitia ghearei
@@ -336,8 +349,10 @@ public class BroBotsVuforia extends LinearOpMode
                 H1Motor1_Drive.setPower(-driveSpeed_x);
             }
             //endregion
+            clawPos = clawInitPos;
+            armPos = armMaxPos;
 
-            //region Miscarea bratului
+        //region Miscarea bratului
             //region Pt. brat
             H2Servo0_ArmBase.setPosition(armPos);
             //endregion
@@ -349,23 +364,32 @@ public class BroBotsVuforia extends LinearOpMode
             //endregion
 
             //region Automat cica
-            clawPos = clawInitPos;
-            armPos = 0.57f;
-
             //ACTUAL COMMANDS
             /*goLeft(1, 500);
             goForward(1, 1000);
             goRight(1, 500);
             goBackwards(1, 1000);*/
 
-            goRight(1, 540);
-            goForward(1, 300);
-            goLeft(1, 540);
+            goRight(1, 500);
+            goForward(1, 850);
+            goLeft(1, 510);
+            goForward(1, 1500);
+            goLeft(1, 490);
+            goForward(0.25f, 5);
+            goForward(0, 0);
+            catchCube();
+            goLeft(1, 500);
+            goForward(1, 850);
+            goLeft(1, 500);
+            goForward(1, 2000);
+            goForward(0, 0);
+            /*goLeft(1, 540);
             goForward(1, 750);
             goLeft(1, 270);
             goForward(1, 150);
             goLeft(1, 250);
             goForward(0.5f, 100);
+            */
             //endregion
 
             //region Telemetrie
