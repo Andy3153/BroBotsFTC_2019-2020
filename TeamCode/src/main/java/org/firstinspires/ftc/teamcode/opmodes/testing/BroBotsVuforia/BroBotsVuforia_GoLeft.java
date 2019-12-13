@@ -30,9 +30,7 @@
 package org.firstinspires.ftc.teamcode.opmodes.testing.BroBotsVuforia;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.RobotLog;
@@ -53,11 +51,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Autonomous(name="Autonomy", group ="Concept")
-public class BroBotsVuforia extends LinearOpMode
+public class BroBotsVuforia_GoLeft extends LinearOpMode
 {
 
     DcMotor H1Motor1_Drive, H1Motor0_Drive, H2Motor0_ArmString;
     Servo H2Servo0_ArmBase, H2Servo1_ClawL, H2Servo2_ClawR;
+
+    public void stopRobot()
+    {
+        goForward(0, 0);
+    }
 
     public void goLeft(float power, int miliseconds)
     {
@@ -365,17 +368,26 @@ public class BroBotsVuforia extends LinearOpMode
 
             //region Automat cica
             //ACTUAL COMMANDS
-            /*goLeft(1, 500);
+            /*goLeft(1, 500);(
             goForward(1, 1000);
             goRight(1, 500);
             goBackwards(1, 1000);*/
 
-            goRight(1, 500);
-            goForward(1, 750);
-            goLeft(1, 510);
+            goLeft(1, 500);
             goForward(1, 1500);
-            goLeft(1, 490);
-            goForward(0.25f, 5);
+            stopRobot();
+            /*goForward(1, 1350);
+            goRight(1, 520);
+            goForward(1, 100);
+            stopRobot();
+            catchCube();*/
+
+            /*goRight(1, 500);
+            goForward(1, 400);
+            goLeft(1, 500);
+            goForward(1, 1000);
+            goLeft(1, 500);
+            goForward(0.25f, 2);
             goForward(0, 0);
             catchCube();
             goLeft(1, 500);
@@ -383,6 +395,7 @@ public class BroBotsVuforia extends LinearOpMode
             goLeft(1, 500);
             goForward(1, 2000);
             goForward(0, 0);
+            */
             /*goLeft(1, 540);
             goForward(1, 750);
             goLeft(1, 270);
