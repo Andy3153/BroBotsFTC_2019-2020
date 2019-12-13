@@ -371,7 +371,7 @@ public class BroBotsVuforia extends LinearOpMode
             goBackwards(1, 1000);*/
 
             goRight(1, 500);
-            goForward(1, 850);
+            goForward(1, 750);
             goLeft(1, 510);
             goForward(1, 1500);
             goLeft(1, 490);
