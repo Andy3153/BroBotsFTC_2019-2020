@@ -50,7 +50,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 import java.util.ArrayList;
 import java.util.List;
 
-@Autonomous(name="Autonomy", group ="Concept")
+@Autonomous(name="AutonomyLEFT", group ="Concept")
 public class BroBotsVuforia_GoLeft extends LinearOpMode
 {
 
@@ -373,7 +373,7 @@ public class BroBotsVuforia_GoLeft extends LinearOpMode
             goRight(1, 500);
             goBackwards(1, 1000);*/
 
-            goLeft(1, 500);
+            goLeft(1, 455);
             goForward(1, 1500);
             stopRobot();
             /*goForward(1, 1350);
