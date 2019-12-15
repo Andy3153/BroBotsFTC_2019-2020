@@ -45,7 +45,7 @@ public class M1RC34_v2_2gp extends LinearOpMode
         //region Declara variabilele actualizate numai odata
         float
                 //Pt. pozitia ghearei
-                clawInitPos=0.47f,clawMaxPos=0.5899999f, clawMinPos=0,
+                clawInitPos=0,clawMaxPos=0.5899999f, clawMinPos=0,
                 clawPos = clawInitPos,
 
                 //Pt. pozitia bratului
@@ -83,10 +83,20 @@ public class M1RC34_v2_2gp extends LinearOpMode
             //region Declara variabilele actualizate constant
             float
                     //Pt. miscarea robotului
-                    driveSpeed_x = gamepad1.left_stick_x,
+                    driveSpeed_x,
                     driveSpeed_y
                             ;
             //endregion
+
+            if(gamepad1.left_stick_x != 0)
+            {
+                driveSpeed_x = gamepad1.left_stick_x;
+            }
+            else if(gamepad2.left_stick_x != 0)
+            {
+                driveSpeed_x = gamepad2.left_stick_x;
+            }
+            else driveSpeed_x = 0;
 
 
             if(gamepad1.right_trigger > 0)
@@ -96,6 +106,10 @@ public class M1RC34_v2_2gp extends LinearOpMode
             else if(gamepad1.left_trigger > 0)
             {
                 driveSpeed_y = gamepad1.left_trigger;
+            }
+            else if (gamepad2.left_stick_y != 0)
+            {
+                driveSpeed_y = gamepad2.left_stick_y;
             }
             else driveSpeed_y = 0;
 

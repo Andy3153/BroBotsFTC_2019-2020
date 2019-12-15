@@ -283,11 +283,11 @@ public class BroBotsVuforia_GoLeft extends LinearOpMode
         //region Declara variabilele actualizate numai odata
         float
                 //Pt. pozitia ghearei
-                clawInitPos=0.47f,     clawMaxPos=0.5899999f, clawMinPos=0,
+                clawInitPos=0,     clawMaxPos=0.5899999f, clawMinPos=0,
                 clawPos = clawInitPos,
 
                 //Pt. pozitia bratului
-                armInitPos=0.4299995f, armMaxPos=0.547998f,   armMinPos=0.4299995f,
+                armInitPos=0.4299995f, armMaxPos=0.547998f,   armMinPos=0.43f,
                 armPos = armInitPos,
 
                 //Pt. miscarea robotului
@@ -353,7 +353,7 @@ public class BroBotsVuforia_GoLeft extends LinearOpMode
             }
             //endregion
             clawPos = clawInitPos;
-            armPos = armMaxPos;
+            armPos = armMinPos;
 
         //region Miscarea bratului
             //region Pt. brat
