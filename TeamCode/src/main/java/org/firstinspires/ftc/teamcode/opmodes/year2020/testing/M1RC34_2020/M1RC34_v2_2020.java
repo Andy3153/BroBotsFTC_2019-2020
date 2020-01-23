@@ -34,7 +34,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name="20 20 boaba aia blana", group="Concept")
+@TeleOp(name="Stable", group="Stable")
 public class M1RC34_v2_2020 extends LinearOpMode
 {
     @Override
@@ -52,7 +52,7 @@ public class M1RC34_v2_2020 extends LinearOpMode
                 armPos = armInitPos,
 
                 //Pt. pozitia tavii
-                plateInitPos = 1, plateMaxPos=1, plateMinPos=0,
+                plateInitPos = 0, plateMaxPos=0.6f, plateMinPos=0,
                 platePos = plateInitPos
 
 //              //Pt. jumatate din putere
@@ -107,16 +107,23 @@ public class M1RC34_v2_2020 extends LinearOpMode
             else driveSpeed_x = 0;
 
 
-            if(gamepad1.right_trigger > 0)
+//            if(gamepad1.right_trigger > 0)
+//            {
+//                driveSpeed_y = -gamepad1.right_trigger;
+//            }
+//            else if(gamepad1.left_trigger > 0)
+//            {
+//                driveSpeed_y = gamepad1.left_trigger;
+//            }
+//            else if (gamepad2.left_stick_y != 0)
+//            {
+//                driveSpeed_y = gamepad2.left_stick_y;
+//            }
+            if(gamepad1.left_stick_y != 0)
             {
-                driveSpeed_y = -gamepad1.right_trigger;
+                driveSpeed_y = gamepad1.left_stick_y;
             }
-            else if(gamepad1.left_trigger > 0)
-            {
-                driveSpeed_y = gamepad1.left_trigger;
-            }
-            else if (gamepad2.left_stick_y != 0)
-            {
+            else if(gamepad2.left_stick_y != 0) {
                 driveSpeed_y = gamepad2.left_stick_y;
             }
             else driveSpeed_y = 0;
@@ -204,16 +211,18 @@ public class M1RC34_v2_2020 extends LinearOpMode
             //region Pt. tava
             if (gamepad2.right_stick_y > 0)
             {
-                platePos=platePos>plateMaxPos?plateMaxPos:platePos+0.01f;
+                platePos = platePos > plateMaxPos ? plateMaxPos : platePos + 0.01f;
             }
             else
             if (gamepad2.right_stick_y < 0)
             {
-                platePos = platePos<plateMinPos?plateMinPos:platePos-0.01f;
+                platePos = platePos < plateMinPos ? plateMinPos : platePos - 0.01f;
             }
 
-            H2Servo3_PlateL.setPosition(platePos);
-            H2Servo4_PlateR.setPosition(1 - platePos);
+//            H2Servo3_PlateL.setPosition(platePos);
+//            H2Servo4_PlateR.setPosition(1 - platePos)
+            H2Servo4_PlateR.setPosition(platePos);
+            H2Servo3_PlateL.setPosition(1-platePos);
             //endregion
             //endregion
 
@@ -262,6 +271,9 @@ public class M1RC34_v2_2020 extends LinearOpMode
 
             //Pozitia ghearei
             telemetry.addData("Pozitia ghearei", clawPos);
+
+            //Pozitia tavii
+            telemetry.addData("Pozitia tavii", platePos);
 
             //Update
             telemetry.update();

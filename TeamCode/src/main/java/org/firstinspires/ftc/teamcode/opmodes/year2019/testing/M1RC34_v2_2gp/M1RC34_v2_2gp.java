@@ -34,7 +34,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name="Testing 2 gamepad", group="Concept")
+//@TeleOp(name="Testing 2 gamepad", group="Concept")
 public class M1RC34_v2_2gp extends LinearOpMode
 {
     @Override

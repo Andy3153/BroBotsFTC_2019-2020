@@ -1,11 +1,11 @@
-package org.firstinspires.ftc.teamcode.opmodes.year2019.testing.TestingEverything;
+package org.firstinspires.ftc.teamcode.opmodes.year2020.testing.TestingEverything;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-//@TeleOp
+@TeleOp(name="Test everything (needs config)", group="Testing")
 public class TestingEverything extends LinearOpMode
 {
     @Override
