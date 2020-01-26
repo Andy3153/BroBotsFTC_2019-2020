@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode.opmodes.year2019.testing.BroBotsVuforia;
+package org.firstinspires.ftc.teamcode.opmodes.year2020.stable.BroBotsVuforia;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -50,8 +50,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Autonomous(name="AutonomyLEFT", group ="Concept")
-public class BroBotsVuforia_GoLeft extends LinearOpMode
+@Autonomous(name="AutonomyRIGHT", group ="Concept")
+public class BroBotsVuforia_GoRight extends LinearOpMode
 {
 
     DcMotor H1Motor1_Drive, H1Motor0_Drive, H2Motor0_ArmString;
@@ -283,7 +283,7 @@ public class BroBotsVuforia_GoLeft extends LinearOpMode
         //region Declara variabilele actualizate numai odata
         float
                 //Pt. pozitia ghearei
-                clawInitPos=0,     clawMaxPos=0.5899999f, clawMinPos=0,
+                clawInitPos=0.2f,     clawMaxPos=0.5899999f, clawMinPos=0,
                 clawPos = clawInitPos,
 
                 //Pt. pozitia bratului
@@ -373,9 +373,27 @@ public class BroBotsVuforia_GoLeft extends LinearOpMode
             goRight(1, 500);
             goBackwards(1, 1000);*/
 
-            goLeft(1, 455);
-            goForward(1, 1500);
-            stopRobot();
+
+
+        goForward(1, 800);
+        goRight(1, 700);
+        goForward(1, 800);
+        stopRobot();
+
+
+
+
+
+
+//        goForward(1, 200);
+//        goRight(1, 455);
+//        goForward(1, 1500);
+//        stopRobot();
+
+//            goForward(1, 200);
+//            goRight(1, 500);
+//            goForward(1, 1300);
+//            stopRobot();
             /*goForward(1, 1350);
             goRight(1, 520);
             goForward(1, 100);

@@ -27,24 +27,24 @@
 //
 //
 
-package org.firstinspires.ftc.teamcode.opmodes.year2020.testing.M1RC34_2020;
+package org.firstinspires.ftc.teamcode.opmodes.year2020.stable.M1RC34_2020;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-//@TeleOp(name="Testing", group="Testing")
+@TeleOp(name="Stable", group="Stable")
 public class M1RC34_v2_2020 extends LinearOpMode
 {
     @Override
     public void runOpMode() throws InterruptedException
     {
 
-         //region Declara variabilele actualizate numai odata
+        //region Declara variabilele actualizate numai odata
         float
                 //Pt. pozitia ghearei
-                clawInitPos=0, clawMaxPos=0.5899999f, clawMinPos=0,
+                clawInitPos=0.14f, clawMaxPos=0.5899999f, clawMinPos=0,
                 clawPos = clawInitPos,
 
                 //Pt. pozitia bratului
@@ -54,12 +54,6 @@ public class M1RC34_v2_2020 extends LinearOpMode
                 //Pt. pozitia tavii
                 plateInitPos = 0, plateMaxPos=0.6f, plateMinPos=0,
                 platePos = plateInitPos
-
-//              //Pt. jumatate din putere
-//              halfPwrMD_x = driveSpeed_x / 1.5f,
-//              halfPwrMD_y = driveSpeed_y / 1.5f,
-//              halfPwrMA_x = gamepad1.right_stick_x / 1.5f,
-//              halfPwrMA_y = gamepad1.right_stick_y / 1.5f,
                 ;
         //endregion
 
@@ -85,7 +79,18 @@ public class M1RC34_v2_2020 extends LinearOpMode
         Servo H2Servo4_PlateR = hardwareMap.get(Servo.class, "H2Servo4_PlateR");
         //endregion
 
-        while (true)
+        //region Seteaza servourile la pozitia initiala
+        H2Servo3_PlateL.setPosition(1 - plateInitPos);
+        H2Servo4_PlateR.setPosition(plateInitPos);
+        H2Servo1_ClawL.setPosition(clawInitPos);
+        H2Servo2_ClawR.setPosition(1 - clawInitPos);
+        H2Servo0_ArmBase.setPosition(armInitPos);
+        //endregion
+
+        telemetry.addData("PRESS START", clawPos);
+
+        waitForStart();  //Waits for the match to start
+        while (opModeIsActive() && !gamepad2.x)
         {
             //region Declara variabilele actualizate constant
             float
@@ -96,6 +101,7 @@ public class M1RC34_v2_2020 extends LinearOpMode
             //endregion
 
             //region Controalele pentru robot
+            //Axa X
             if(gamepad1.left_stick_x != 0)
             {
                 driveSpeed_x = gamepad1.left_stick_x;
@@ -106,19 +112,7 @@ public class M1RC34_v2_2020 extends LinearOpMode
             }
             else driveSpeed_x = 0;
 
-
-//            if(gamepad1.right_trigger > 0)
-//            {
-//                driveSpeed_y = -gamepad1.right_trigger;
-//            }
-//            else if(gamepad1.left_trigger > 0)
-//            {
-//                driveSpeed_y = gamepad1.left_trigger;
-//            }
-//            else if (gamepad2.left_stick_y != 0)
-//            {
-//                driveSpeed_y = gamepad2.left_stick_y;
-//            }
+            //Axa Y
             if(gamepad1.left_stick_y != 0)
             {
                 driveSpeed_y = gamepad1.left_stick_y;
@@ -138,20 +132,6 @@ public class M1RC34_v2_2020 extends LinearOpMode
             H2Motor0_ArmString.setPower(0);
             //endregion
 
-//            //region Butoanele pt. miscat mai incet
-//              if (gamepad1.left_trigger > 0)
-//              {
-//                  driveSpeed_x = halfPwrMD_x;
-//                  driveSpeed_y = halfPwrMD_y;
-//              }
-//
-//              if (gamepad1.right_trigger > 0)
-//              {
-//                  gamepad1.right_stick_x = halfPwrMA_x;
-//                  gamepad1.right_stick_y = halfPwrMA_y;
-//              }
-//            //endregion
-
             //region Miscarea robotului
             //Miscarea fata-spate
             H1Motor0_Drive.setPower(-driveSpeed_y);
@@ -163,7 +143,6 @@ public class M1RC34_v2_2020 extends LinearOpMode
                 H1Motor0_Drive.setPower(-driveSpeed_x);
                 H1Motor1_Drive.setPower(-driveSpeed_x);
             }
-
             //endregion
 
             //region Miscarea bratului
@@ -219,22 +198,12 @@ public class M1RC34_v2_2020 extends LinearOpMode
                 platePos = platePos < plateMinPos ? plateMinPos : platePos - 0.01f;
             }
 
-//            H2Servo3_PlateL.setPosition(platePos);
-//            H2Servo4_PlateR.setPosition(1 - platePos)
-            H2Servo4_PlateR.setPosition(platePos);
             H2Servo3_PlateL.setPosition(1-platePos);
+            H2Servo4_PlateR.setPosition(platePos);
             //endregion
             //endregion
 
-            //region Butoane de oprire
-            //Oprirea miscarii robotului
-            if(gamepad1.y)
-            {
-                H1Motor0_Drive.setPower(0);
-                H1Motor1_Drive.setPower(0);
-            }
-
-            //Oprirea miscarii bratului
+            //region Resetarea pozitiilor initiale ale servourilor
             if(gamepad2.b)
             {
                 //Pt. ata
@@ -249,18 +218,7 @@ public class M1RC34_v2_2020 extends LinearOpMode
                 //Pt. tava
                 platePos = plateInitPos;
             }
-
-//            //Start / stop pentru tot codul
-//            if(gamepad1.back)
-//            {
-//                stop();
-//            }
-//
-//            if(gamepad1.start)
-//            {
-//                start();
-//            }
-//            //endregion
+            //endregion
 
             //region Telemetrie
             //Viteza robotului
