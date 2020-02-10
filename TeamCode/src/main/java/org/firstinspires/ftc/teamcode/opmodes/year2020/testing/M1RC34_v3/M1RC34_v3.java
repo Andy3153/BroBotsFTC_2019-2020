@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.opmodes.year2020.testing.M1RC34_2020;
+package org.firstinspires.ftc.teamcode.opmodes.year2020.testing.M1RC34_v3;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -7,30 +7,30 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 
 @TeleOp(name="eltest", group="Testing")
-public class M1RC34_v2_2020_eltest extends LinearOpMode
+public class M1RC34_v3 extends LinearOpMode
 {
     public void turn(DcMotor FL, DcMotor FR, DcMotor BL, DcMotor BR)
     {
-        FL.setPower(-gamepad2.right_stick_x);
-        FR.setPower(-gamepad2.right_stick_x);
-        BL.setPower(-gamepad2.right_stick_x);
-        BR.setPower(-gamepad2.right_stick_x);
+        FL.setPower(gamepad2.right_stick_x);
+        FR.setPower(gamepad2.right_stick_x);
+        BL.setPower(gamepad2.right_stick_x);
+        BR.setPower(gamepad2.right_stick_x);
     }
 
     public void strafe(DcMotor FL, DcMotor FR, DcMotor BL, DcMotor BR)
     {
-        FL.setPower(-gamepad2.left_stick_x);
-        FR.setPower(-gamepad2.left_stick_x);
-        BL.setPower(gamepad2.left_stick_x);
-        BR.setPower(gamepad2.left_stick_x);
+        FL.setPower(gamepad2.left_stick_x);
+        FR.setPower(gamepad2.left_stick_x);
+        BL.setPower(-gamepad2.left_stick_x);
+        BR.setPower(-gamepad2.left_stick_x);
     }
 
     public void move(DcMotor FL, DcMotor FR, DcMotor BL, DcMotor BR)
     {
-        FL.setPower(gamepad2.left_stick_y);
-        BL.setPower(gamepad2.left_stick_y);
-        FR.setPower(-gamepad2.left_stick_y);
-        BR.setPower(-gamepad2.left_stick_y);
+        FL.setPower(-gamepad2.left_stick_y);
+        BL.setPower(-gamepad2.left_stick_y);
+        FR.setPower(gamepad2.left_stick_y);
+        BR.setPower(gamepad2.left_stick_y);
     }
 
     @Override
@@ -89,9 +89,9 @@ public class M1RC34_v2_2020_eltest extends LinearOpMode
             H1Motor3_BR.setPower(0);
             //endregion
 
-            turn(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
-            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
             move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            turn(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
 
             //region Telemetrie
             //Viteza robotului
