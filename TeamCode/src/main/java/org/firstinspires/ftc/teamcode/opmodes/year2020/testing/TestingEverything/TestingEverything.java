@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name="Test everything (needs config)", group="Testing")
+//@TeleOp(name="Test everything (needs config)", group="Testing")
 public class TestingEverything extends LinearOpMode
 {
     @Override

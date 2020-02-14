@@ -1,11 +1,13 @@
 package org.firstinspires.ftc.teamcode.opmodes.year2020.testing.sdf;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 //import com.qualcomm.robotcore.hardware.Servo;
 
-//@TeleOp(name="sdf", group="sdf")
+@TeleOp(name="sdf", group="sdf")
+@Disabled
 public class sdf extends LinearOpMode
 {
     @Override
