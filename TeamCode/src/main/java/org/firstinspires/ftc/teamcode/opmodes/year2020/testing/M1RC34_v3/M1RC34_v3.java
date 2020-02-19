@@ -40,9 +40,9 @@ public class M1RC34_v3 extends LinearOpMode
             speedX = gamepad1.y?speedX/1.75f:speedX;
             speedY = gamepad1.y?speedY/1.75f:speedY;
 
-            float speedX2=gamepad2.left_stick_x, speedY2=gamepad2.left_stick_y, speedTurn2=gamepad2.right_stick_x;
+            /*float speedX2=gamepad2.left_stick_x, speedY2=gamepad2.left_stick_y, speedTurn2=gamepad2.right_stick_x;
             speedX2 = gamepad2.y?speedX2/1.75f:speedX2;
-            speedY2 = gamepad2.y?speedY2/1.75f:speedY2;
+            speedY2 = gamepad2.y?speedY2/1.75f:speedY2;*/
 
             H1Motor0_FL.setPower(0);
             H1Motor1_FR.setPower(0);

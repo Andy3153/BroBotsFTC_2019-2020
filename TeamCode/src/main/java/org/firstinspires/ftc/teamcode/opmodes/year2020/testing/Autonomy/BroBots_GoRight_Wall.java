@@ -76,9 +76,9 @@ public class BroBots_GoRight_Wall extends LinearOpMode {
     private void slashKill(Servo left, Servo right, boolean isClosing)
     {
         if(isClosing)
-            platePos = platePos > plateMaxPos ? plateMaxPos : platePos + 0.05f;
+            platePos = plateMaxPos;
         else
-            platePos = platePos < plateMinPos? plateMinPos : platePos - 0.05f;
+            platePos = plateMinPos;
 
         left.setPosition(1-platePos);
         right.setPosition(platePos);
@@ -115,7 +115,7 @@ public class BroBots_GoRight_Wall extends LinearOpMode {
             robotMovement.move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed);
 */
             slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, true);
-  //          move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 500);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 500);
             slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, false);
     /*        while (opModeIsActive() && ultraSensor.getDistance(DistanceUnit.CM) > 6.5)
             {

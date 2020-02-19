@@ -25,9 +25,9 @@ public class robotGrabbyThings {
     public static float slashKill(Servo left, Servo right, boolean isClosing, float platePos)
     {
         if(isClosing)
-            platePos = platePos > plateMaxPos ? plateMaxPos : platePos + 0.05f;
+            platePos = platePos > plateMaxPos-0.05f ? plateMaxPos : platePos + 0.05f;
         else
-            platePos = platePos < plateMinPos ? plateMinPos : platePos - 0.05f;
+            platePos = platePos < plateMinPos-0.05f ? plateMinPos : platePos - 0.05f;
 
         left.setPosition(1-platePos);
         right.setPosition(platePos);
