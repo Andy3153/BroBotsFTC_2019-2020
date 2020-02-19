@@ -41,6 +41,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Functions.robotMovement;
 
+import java.nio.channels.FileLock;
+
 import static org.firstinspires.ftc.teamcode.Functions.Constants.plateMaxPos;
 import static org.firstinspires.ftc.teamcode.Functions.Constants.plateMinPos;
 import static org.firstinspires.ftc.teamcode.Functions.robotGrabbyThings.slashKill;
@@ -110,35 +112,41 @@ public class BroBots_GoRight_Wall extends LinearOpMode {
             //Do stuff
             speed /= 3;
 
-            /*move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 100);
-            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 200);
+            //Move to plate
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 100);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 250);
             robotMovement.move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed);
-*/
-            slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, true);
-            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 500);
-            slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, false);
-    /*        while (opModeIsActive() && ultraSensor.getDistance(DistanceUnit.CM) > 6.5)
+            while (opModeIsActive() && ultraSensor.getDistance(DistanceUnit.CM) > 6.5)
             {
                 telemetry.addData("Distance: ", ultraSensor.getDistance(DistanceUnit.CM));
                 telemetry.update();
             }
-*/
-            /*strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 550);
+
+            //Catch plate
+            slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, true);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 500);
+            slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, false);
+
+            //Go around plate
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 550);
             move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 1500);
             strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 550);
             turn(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 700);
 
-            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed);
-
+            //Get to plate again
+            robotMovement.move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed);
             while (ultraSensor.getDistance(DistanceUnit.CM) > 6) {
                 telemetry.addData("Distance: ", ultraSensor.getDistance(DistanceUnit.CM));
                 telemetry.update();
             }
 
+            //Catch plate again
             slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, true);
-            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 2000);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 1500);
             slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, false);
-            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 550);*/
+
+            //Parking
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 550);
 
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
         }

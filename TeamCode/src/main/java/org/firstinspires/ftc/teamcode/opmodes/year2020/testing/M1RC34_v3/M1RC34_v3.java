@@ -7,10 +7,14 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Functions.Constants;
 
+import static org.firstinspires.ftc.teamcode.Functions.Constants.clawMinPos;
 import static org.firstinspires.ftc.teamcode.Functions.Constants.plateMaxPos;
 import static org.firstinspires.ftc.teamcode.Functions.Constants.plateMinPos;
+import static org.firstinspires.ftc.teamcode.Functions.Constants.rotateMinPos;
 import static org.firstinspires.ftc.teamcode.Functions.robotGrabbyThings.moveArm;
+import static org.firstinspires.ftc.teamcode.Functions.robotGrabbyThings.rotateClaw;
 import static org.firstinspires.ftc.teamcode.Functions.robotGrabbyThings.slashKill;
+import static org.firstinspires.ftc.teamcode.Functions.robotGrabbyThings.useClaw;
 import static org.firstinspires.ftc.teamcode.Functions.robotMovement.move;
 import static org.firstinspires.ftc.teamcode.Functions.robotMovement.strafe;
 import static org.firstinspires.ftc.teamcode.Functions.robotMovement.turn;
@@ -21,7 +25,7 @@ public class M1RC34_v3 extends LinearOpMode
     @Override
     public void runOpMode() throws InterruptedException
     {
-        float platePos= plateMinPos;
+        float platePos= plateMinPos, rotatePos=rotateMinPos, clawPos=clawMinPos;
 
         DcMotor H1Motor0_FL = hardwareMap.get(DcMotor.class, "H1Motor0_FL");
         DcMotor H1Motor1_FR = hardwareMap.get(DcMotor.class, "H1Motor1_FR");
@@ -31,6 +35,9 @@ public class M1RC34_v3 extends LinearOpMode
         DcMotor H2Motor0_Arm = hardwareMap.get(DcMotor.class, "H2Motor0_Arm");
         Servo H2Servo0_PlateLeft = hardwareMap.get(Servo.class, "H2Servo0_PlateLeft");
         Servo H2Servo1_PlateRight = hardwareMap.get(Servo.class, "H2Servo1_PlateRight");
+
+        Servo H2Servo2_RotateClaw = hardwareMap.get(Servo.class, "H2Servo2_RotateClaw");
+        Servo H2Servo3_Claw = hardwareMap.get(Servo.class, "H2Servo3_Claw");
 
         waitForStart();
         while (opModeIsActive() && !gamepad1.x)
@@ -65,6 +72,8 @@ public class M1RC34_v3 extends LinearOpMode
             //endregion
 
             moveArm(H2Motor0_Arm, gamepad2.dpad_up, gamepad2.dpad_down);
+            rotatePos=rotateClaw(H2Servo2_RotateClaw, rotatePos, gamepad2);
+            clawPos=useClaw(H2Servo3_Claw, clawPos, gamepad2);
 
             platePos = slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, gamepad2.right_stick_y, platePos);
 
