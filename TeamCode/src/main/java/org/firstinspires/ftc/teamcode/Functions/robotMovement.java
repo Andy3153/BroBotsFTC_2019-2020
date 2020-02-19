@@ -2,14 +2,13 @@ package org.firstinspires.ftc.teamcode.Functions;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import static java.lang.Thread.sleep;
 
 public class robotMovement {
 
     public static void move(DcMotor FL, DcMotor FR, DcMotor BL, DcMotor BR, float speed) {
         FL.setPower(-speed);
-        BL.setPower(-speed);
         FR.setPower(speed);
+        BL.setPower(-speed);
         BR.setPower(speed);
     }
 

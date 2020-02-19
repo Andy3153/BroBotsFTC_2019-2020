@@ -48,11 +48,9 @@ public class robotGrabbyThings {
     public static float rotateClaw(Servo rotateClaw, double rotatePos, Gamepad gamepad)
     {
         if(gamepad.dpad_right)
-            rotatePos=rotateClaw.getPosition()>rotateMaxPos-0.01f?rotateMaxPos:rotateClaw.getPosition()+0.01f;
-            //rotateClaw.setPosition(rotateClaw.getPosition()>rotateMaxPos-0.05f?rotateMaxPos:rotateClaw.getPosition()+0.05f);
+            rotatePos=rotatePos>rotateMaxPos-0.04f?rotateMaxPos:rotatePos+0.04f;
         else if(gamepad.dpad_left)
-            rotatePos=rotateClaw.getPosition()<rotateMinPos+0.01f?rotateMinPos:rotateClaw.getPosition()-0.01f;
-            //rotateClaw.setPosition(rotateClaw.getPosition()<rotateMinPos+0.05f?rotateMinPos:rotateClaw.getPosition()-0.05f);
+            rotatePos=rotatePos<rotateMinPos+0.04f?rotateMinPos:rotatePos-0.04f;
 
         rotateClaw.setPosition(rotatePos);
         return (float)rotatePos;
@@ -61,12 +59,11 @@ public class robotGrabbyThings {
     public static float useClaw(Servo claw, double clawPos, Gamepad gamepad)
     {
         if(gamepad.right_bumper)
-            clawPos=clawMaxPos;
+            clawPos=clawPos>clawMaxPos-0.0225f?clawMaxPos:clawPos+0.0225f;
         else if(gamepad.left_bumper)
-            clawPos=clawMinPos;
+            clawPos=clawPos<clawMinPos+0.04f?clawMinPos:clawPos-0.4f;
         claw.setPosition(clawPos);
 
         return (float)clawPos;
     }
-
 }

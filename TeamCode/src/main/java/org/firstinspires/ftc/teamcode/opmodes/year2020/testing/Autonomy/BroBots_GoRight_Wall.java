@@ -43,8 +43,10 @@ import org.firstinspires.ftc.teamcode.Functions.robotMovement;
 
 import java.nio.channels.FileLock;
 
+import static org.firstinspires.ftc.teamcode.Functions.Constants.clawMinPos;
 import static org.firstinspires.ftc.teamcode.Functions.Constants.plateMaxPos;
 import static org.firstinspires.ftc.teamcode.Functions.Constants.plateMinPos;
+import static org.firstinspires.ftc.teamcode.Functions.Constants.rotateMaxPos;
 import static org.firstinspires.ftc.teamcode.Functions.robotGrabbyThings.slashKill;
 import static org.firstinspires.ftc.teamcode.Functions.robotMovement.move;
 import static org.firstinspires.ftc.teamcode.Functions.robotMovement.strafe;
@@ -85,12 +87,11 @@ public class BroBots_GoRight_Wall extends LinearOpMode {
         left.setPosition(1-platePos);
         right.setPosition(platePos);
 
-        sleep(3000);
+        sleep(1250);
     }
 
     @Override
     public void runOpMode() {
-        //int tickSpeed = 1120;
         float speed = 1;
 
         DcMotor H1Motor0_FL = hardwareMap.get(DcMotor.class, "H1Motor0_FL");
@@ -101,52 +102,50 @@ public class BroBots_GoRight_Wall extends LinearOpMode {
         DcMotor H2Motor0_Arm = hardwareMap.get(DcMotor.class, "H2Motor0_Arm");
         Servo H2Servo0_PlateLeft = hardwareMap.get(Servo.class, "H2Servo0_PlateLeft");
         Servo H2Servo1_PlateRight = hardwareMap.get(Servo.class, "H2Servo1_PlateRight");
+        Servo H2Servo2_RotateClaw = hardwareMap.get(Servo.class, "H2Servo2_RotateClaw");
+        Servo H2Servo3_Claw = hardwareMap.get(Servo.class, "H2Servo3_Claw");
 
         ModernRoboticsI2cRangeSensor ultraSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "ultraSensor");
+
+        H2Servo0_PlateLeft.setPosition(1-platePos);
+        H2Servo1_PlateRight.setPosition(platePos);
+        H2Servo2_RotateClaw.setPosition(rotateMaxPos);
+        H2Servo3_Claw.setPosition(clawMinPos);
+        H2Motor0_Arm.setPower(0);
 
         waitForStart();
 
         if(opModeIsActive()) {
-            H2Motor0_Arm.setPower(0);
-
             //Do stuff
             speed /= 3;
 
             //Move to plate
-            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 100);
-            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 250);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 50);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 1000);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
             robotMovement.move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed);
-            while (opModeIsActive() && ultraSensor.getDistance(DistanceUnit.CM) > 6.5)
+
+            while (opModeIsActive() && ultraSensor.getDistance(DistanceUnit.CM) > 6.25)
             {
                 telemetry.addData("Distance: ", ultraSensor.getDistance(DistanceUnit.CM));
                 telemetry.update();
             }
 
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            speed*=3/2;
+
             //Catch plate
             slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, true);
-            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 500);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 3000);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 3250);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
             slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, false);
 
-            //Go around plate
-            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 550);
-            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 1500);
-            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 550);
-            turn(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 700);
-
-            //Get to plate again
-            robotMovement.move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed);
-            while (ultraSensor.getDistance(DistanceUnit.CM) > 6) {
-                telemetry.addData("Distance: ", ultraSensor.getDistance(DistanceUnit.CM));
-                telemetry.update();
-            }
-
-            //Catch plate again
-            slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, true);
-            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 1500);
-            slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, false);
-
-            //Parking
-            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 550);
+            speed*=2;
+            //Park
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 2500);
 
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
         }

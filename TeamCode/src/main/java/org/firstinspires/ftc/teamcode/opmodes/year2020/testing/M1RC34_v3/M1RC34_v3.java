@@ -1,15 +1,18 @@
 package org.firstinspires.ftc.teamcode.opmodes.year2020.testing.M1RC34_v3;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Functions.Constants;
 
 import static org.firstinspires.ftc.teamcode.Functions.Constants.clawMinPos;
 import static org.firstinspires.ftc.teamcode.Functions.Constants.plateMaxPos;
 import static org.firstinspires.ftc.teamcode.Functions.Constants.plateMinPos;
+import static org.firstinspires.ftc.teamcode.Functions.Constants.rotateMaxPos;
 import static org.firstinspires.ftc.teamcode.Functions.Constants.rotateMinPos;
 import static org.firstinspires.ftc.teamcode.Functions.robotGrabbyThings.moveArm;
 import static org.firstinspires.ftc.teamcode.Functions.robotGrabbyThings.rotateClaw;
@@ -25,7 +28,7 @@ public class M1RC34_v3 extends LinearOpMode
     @Override
     public void runOpMode() throws InterruptedException
     {
-        float platePos= plateMinPos, rotatePos=rotateMinPos, clawPos=clawMinPos;
+        float platePos= plateMinPos, rotatePos=rotateMaxPos, clawPos=clawMinPos;
 
         DcMotor H1Motor0_FL = hardwareMap.get(DcMotor.class, "H1Motor0_FL");
         DcMotor H1Motor1_FR = hardwareMap.get(DcMotor.class, "H1Motor1_FR");
@@ -39,25 +42,25 @@ public class M1RC34_v3 extends LinearOpMode
         Servo H2Servo2_RotateClaw = hardwareMap.get(Servo.class, "H2Servo2_RotateClaw");
         Servo H2Servo3_Claw = hardwareMap.get(Servo.class, "H2Servo3_Claw");
 
+        ModernRoboticsI2cRangeSensor ultraSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "ultraSensor");
+
         waitForStart();
+
+        //boolean slow=false;
         while (opModeIsActive() && !gamepad1.x)
         {
             //region Speed & Init
+            //if(gamepad1.right_bumper) slow=!slow;
             float speedX=gamepad1.left_stick_x, speedY=gamepad1.left_stick_y, speedTurn=gamepad1.right_stick_x;
-            speedX = gamepad1.y?speedX/1.75f:speedX;
-            speedY = gamepad1.y?speedY/1.75f:speedY;
-
-            /*float speedX2=gamepad2.left_stick_x, speedY2=gamepad2.left_stick_y, speedTurn2=gamepad2.right_stick_x;
-            speedX2 = gamepad2.y?speedX2/1.75f:speedX2;
-            speedY2 = gamepad2.y?speedY2/1.75f:speedY2;*/
-
+            /*speedX = slow?speedX*0.75f:speedX;
+            speedY = slow?speedY*0.75f:speedY;
+            speedTurn = slow?speedTurn*0.75f:speedTurn;
+*/
             H1Motor0_FL.setPower(0);
             H1Motor1_FR.setPower(0);
             H1Motor2_BL.setPower(0);
             H1Motor3_BR.setPower(0);
-
             //endregion
-
             //region Movement
             if(!gamepad1.a) {
                 move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speedY);
@@ -74,11 +77,14 @@ public class M1RC34_v3 extends LinearOpMode
             moveArm(H2Motor0_Arm, gamepad2.dpad_up, gamepad2.dpad_down);
             rotatePos=rotateClaw(H2Servo2_RotateClaw, rotatePos, gamepad2);
             clawPos=useClaw(H2Servo3_Claw, clawPos, gamepad2);
-
             platePos = slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, gamepad2.right_stick_y, platePos);
 
             telemetry.addData("Plate Left: ", H2Servo0_PlateLeft.getPosition());
             telemetry.addData("Plate Right: ", H2Servo1_PlateRight.getPosition());
+            telemetry.addData("Claw position: ", clawPos);
+            telemetry.addData("Rotate position: ", rotatePos);
+            telemetry.addData("Rotation position: ", H2Motor0_Arm.getCurrentPosition());
+            telemetry.addData("Sensor range: ", ultraSensor.getDistance(DistanceUnit.CM));
 
             telemetry.update();
         }
