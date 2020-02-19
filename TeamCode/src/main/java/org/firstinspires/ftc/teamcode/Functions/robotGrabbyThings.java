@@ -47,11 +47,11 @@ public class robotGrabbyThings {
 
     public static float rotateClaw(Servo rotateClaw, double rotatePos, Gamepad gamepad)
     {
-        if(gamepad.dpad_up)
-            rotatePos=rotateClaw.getPosition()>rotateMaxPos-0.05f?rotateMaxPos:rotateClaw.getPosition()+0.05f;
+        if(gamepad.dpad_right)
+            rotatePos=rotateClaw.getPosition()>rotateMaxPos-0.01f?rotateMaxPos:rotateClaw.getPosition()+0.01f;
             //rotateClaw.setPosition(rotateClaw.getPosition()>rotateMaxPos-0.05f?rotateMaxPos:rotateClaw.getPosition()+0.05f);
-        else if(gamepad.dpad_down)
-            rotatePos=rotateClaw.getPosition()<rotateMinPos+0.05f?rotateMinPos:rotateClaw.getPosition()-0.05f;
+        else if(gamepad.dpad_left)
+            rotatePos=rotateClaw.getPosition()<rotateMinPos+0.01f?rotateMinPos:rotateClaw.getPosition()-0.01f;
             //rotateClaw.setPosition(rotateClaw.getPosition()<rotateMinPos+0.05f?rotateMinPos:rotateClaw.getPosition()-0.05f);
 
         rotateClaw.setPosition(rotatePos);

@@ -38,7 +38,7 @@ import static org.firstinspires.ftc.teamcode.Functions.robotMovement.move;
 import static org.firstinspires.ftc.teamcode.Functions.robotMovement.strafe;
 
 
-@Autonomous(name="RoadRunnerLeftBridge", group ="Autonomy")
+@Autonomous(name="LeftBridge", group ="Autonomy")
 public class BroBots_GoLeft extends LinearOpMode {
 
     float platePos=0;

@@ -50,7 +50,7 @@ import static org.firstinspires.ftc.teamcode.Functions.robotMovement.move;
 import static org.firstinspires.ftc.teamcode.Functions.robotMovement.strafe;
 import static org.firstinspires.ftc.teamcode.Functions.robotMovement.turn;
 
-@Autonomous(name="RoadRunnerRightWall", group ="Autonomy")
+@Autonomous(name="RightWall", group ="Autonomy")
 public class BroBots_GoRight_Wall extends LinearOpMode {
 
     public float platePos=plateMinPos;

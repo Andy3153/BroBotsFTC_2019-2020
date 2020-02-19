@@ -37,7 +37,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import static org.firstinspires.ftc.teamcode.Functions.robotMovement.move;
 import static org.firstinspires.ftc.teamcode.Functions.robotMovement.strafe;
 
-@Autonomous(name="RoadRunnerRightBridge", group ="Autonomy")
+@Autonomous(name="RightBridge", group ="Autonomy")
 public class BroBots_GoRight extends LinearOpMode {
 
     float platePos=0;

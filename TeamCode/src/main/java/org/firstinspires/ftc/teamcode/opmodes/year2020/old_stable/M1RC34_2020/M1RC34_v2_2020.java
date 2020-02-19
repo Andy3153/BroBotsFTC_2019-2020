@@ -27,14 +27,16 @@
 //
 //
 
-package org.firstinspires.ftc.teamcode.opmodes.year2020.stable.M1RC34_2020;
+package org.firstinspires.ftc.teamcode.opmodes.year2020.old_stable.M1RC34_2020;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name="Stable", group="Stable")
+@Disabled
 public class M1RC34_v2_2020 extends LinearOpMode
 {
     @Override

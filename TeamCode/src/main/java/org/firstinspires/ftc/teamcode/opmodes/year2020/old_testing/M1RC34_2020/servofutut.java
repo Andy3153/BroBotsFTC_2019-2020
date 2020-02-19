@@ -1,11 +1,12 @@
-package org.firstinspires.ftc.teamcode.opmodes.year2020.testing.M1RC34_2020;
+package org.firstinspires.ftc.teamcode.opmodes.year2020.old_testing.M1RC34_2020;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name="Tservofutut", group="servofutut")
+@TeleOp(name="servofutut", group="servofutut")
+@Disabled
 public class servofutut extends LinearOpMode
 {
     @Override

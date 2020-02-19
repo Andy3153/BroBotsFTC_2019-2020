@@ -27,9 +27,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode.opmodes.year2020.stable.BroBotsVuforia;
+package org.firstinspires.ftc.teamcode.opmodes.year2020.old_stable.BroBotsVuforia;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -50,8 +51,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 import java.util.ArrayList;
 import java.util.List;
 
-@Autonomous(name="AutonomyLEFT", group ="Concept")
-public class BroBotsVuforia_GoLeft extends LinearOpMode
+@Autonomous(name="AutonomyRIGHT", group ="Concept")
+@Disabled
+public class BroBotsVuforia_GoRight extends LinearOpMode
 {
 
     DcMotor H1Motor1_Drive, H1Motor0_Drive, H2Motor0_ArmString;
@@ -314,7 +316,7 @@ public class BroBotsVuforia_GoLeft extends LinearOpMode
 
         //region Seteaza pozitia ghearei
         sleep(1000);
-        clawPos = 0.2f;
+        clawPos = 0;
         //endregion
         H2Servo0_ArmBase.setPosition(armMinPos);
 
@@ -368,22 +370,60 @@ public class BroBotsVuforia_GoLeft extends LinearOpMode
 
             //region Automat cica
             //ACTUAL COMMANDS
+            /*goLeft(1, 500);(
+            goForward(1, 1000);
+            goRight(1, 500);
+            goBackwards(1, 1000);*/
 
+
+
+        goForward(1, 800);
+        goRight(1, 700);
+        goForward(1, 800);
+        stopRobot();
+
+
+
+
+
+
+//        goForward(1, 200);
+//        goRight(1, 455);
+//        goForward(1, 1500);
+//        stopRobot();
 
 //            goForward(1, 200);
-//            goLeft(1, 455);
-//            goForward(1, 1500);
+//            goRight(1, 500);
+//            goForward(1, 1300);
 //            stopRobot();
-
-
-            goForward(1, 850);
-            goLeft(1, 650);
-            goForward(1, 800);
+            /*goForward(1, 1350);
+            goRight(1, 520);
+            goForward(1, 100);
             stopRobot();
+            catchCube();*/
 
-
-
-        //endregion
+            /*goRight(1, 500);
+            goForward(1, 400);
+            goLeft(1, 500);
+            goForward(1, 1000);
+            goLeft(1, 500);
+            goForward(0.25f, 2);
+            goForward(0, 0);
+            catchCube();
+            goLeft(1, 500);
+            goForward(1, 850);
+            goLeft(1, 500);
+            goForward(1, 2000);
+            goForward(0, 0);
+            */
+            /*goLeft(1, 540);
+            goForward(1, 750);
+            goLeft(1, 270);
+            goForward(1, 150);
+            goLeft(1, 250);
+            goForward(0.5f, 100);
+            */
+            //endregion
 
             //region Telemetrie
             //Viteza robotului
