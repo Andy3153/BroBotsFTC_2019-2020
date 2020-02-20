@@ -137,7 +137,7 @@ public class BroBots_GoLeft_Wall extends LinearOpMode {
             slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, false);
             strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 1000);
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
-            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 1000);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR,  speed, 1000);
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
             strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 750);
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
