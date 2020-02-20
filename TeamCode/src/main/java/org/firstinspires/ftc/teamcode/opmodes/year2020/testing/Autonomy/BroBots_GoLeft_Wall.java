@@ -29,11 +29,19 @@
 
 package org.firstinspires.ftc.teamcode.opmodes.year2020.testing.Autonomy;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import org.firstinspires.ftc.teamcode.Functions.robotMovement;
+
+import static org.firstinspires.ftc.teamcode.Functions.Constants.clawMinPos;
+import static org.firstinspires.ftc.teamcode.Functions.Constants.plateMaxPos;
+import static org.firstinspires.ftc.teamcode.Functions.Constants.plateMinPos;
+import static org.firstinspires.ftc.teamcode.Functions.Constants.rotateMaxPos;
 import static org.firstinspires.ftc.teamcode.Functions.robotMovement.move;
 import static org.firstinspires.ftc.teamcode.Functions.robotMovement.strafe;
 
@@ -41,12 +49,45 @@ import static org.firstinspires.ftc.teamcode.Functions.robotMovement.strafe;
 @Autonomous(name="LeftWall", group ="Autonomy")
 public class BroBots_GoLeft_Wall extends LinearOpMode {
 
-    float platePos=0;
+
+    public float platePos=plateMinPos;
+
+    public void stopRobot(DcMotor FL, DcMotor FR, DcMotor BL, DcMotor BR)
+    {
+        move(FL, FR, BL, BR, 0, 0);
+    }
+
+    public void move(DcMotor FL, DcMotor FR, DcMotor BL, DcMotor BR, float speed, int miliseconds) {
+        robotMovement.move(FL, FR, BL, BR, speed);
+        sleep(miliseconds);
+    }
+
+    public void strafe(DcMotor FL, DcMotor FR, DcMotor BL, DcMotor BR, float speed, int miliseconds/*int ticks*/) {
+        robotMovement.strafe(FL, FR, BL, BR, speed);
+        sleep(miliseconds);
+    }
+
+    public void turn(DcMotor FL, DcMotor FR, DcMotor BL, DcMotor BR, float speed, int miliseconds) {
+        robotMovement.turn(FL, FR, BL, BR, speed);
+        sleep(miliseconds);
+    }
+
+    private void slashKill(Servo left, Servo right, boolean isClosing)
+    {
+        if(isClosing)
+            platePos = plateMaxPos;
+        else
+            platePos = plateMinPos;
+
+        left.setPosition(1-platePos);
+        right.setPosition(platePos);
+
+        sleep(1250);
+    }
 
     @Override
     public void runOpMode() {
-        //int tickSpeed = 1120;
-        float speed = 1;
+        float speed = -1;
 
         DcMotor H1Motor0_FL = hardwareMap.get(DcMotor.class, "H1Motor0_FL");
         DcMotor H1Motor1_FR = hardwareMap.get(DcMotor.class, "H1Motor1_FR");
@@ -56,12 +97,62 @@ public class BroBots_GoLeft_Wall extends LinearOpMode {
         DcMotor H2Motor0_Arm = hardwareMap.get(DcMotor.class, "H2Motor0_Arm");
         Servo H2Servo0_PlateLeft = hardwareMap.get(Servo.class, "H2Servo0_PlateLeft");
         Servo H2Servo1_PlateRight = hardwareMap.get(Servo.class, "H2Servo1_PlateRight");
+        Servo H2Servo2_RotateClaw = hardwareMap.get(Servo.class, "H2Servo2_RotateClaw");
+        Servo H2Servo3_Claw = hardwareMap.get(Servo.class, "H2Servo3_Claw");
+
+        ModernRoboticsI2cRangeSensor ultraSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "ultraSensor");
+
+        H2Servo0_PlateLeft.setPosition(1-platePos);
+        H2Servo1_PlateRight.setPosition(platePos);
+        H2Servo2_RotateClaw.setPosition(rotateMaxPos);
+        H2Servo3_Claw.setPosition(clawMinPos);
+        H2Motor0_Arm.setPower(0);
 
         waitForStart();
 
-        H2Motor0_Arm.setPower(0);
+        if(opModeIsActive()) {
+            //Do stuff
 
-        //Do stuff
+            //Move to plate
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 20);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 450);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            speed /= 3;
+            robotMovement.move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed);
 
+            while (opModeIsActive() && ultraSensor.getDistance(DistanceUnit.CM) > 6.8)
+            {
+                telemetry.addData("Distance: ", ultraSensor.getDistance(DistanceUnit.CM));
+                telemetry.update();
+            }
+
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            speed*=3/1.2;
+
+            //Catch plate!
+            slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, true);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 830);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, false);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 1000);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 1000);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 750);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 900);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+
+            //Park
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 50);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 800);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 400);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 750);
+
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+        }
     }
 }

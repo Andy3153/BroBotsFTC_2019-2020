@@ -46,16 +46,16 @@ public class M1RC34_v3 extends LinearOpMode
 
         waitForStart();
 
-        //boolean slow=false;
+        boolean slow=false;
         while (opModeIsActive() && !gamepad1.x)
         {
             //region Speed & Init
-            //if(gamepad1.right_bumper) slow=!slow;
+            if(gamepad1.right_bumper) slow=!slow;
             float speedX=gamepad1.left_stick_x, speedY=gamepad1.left_stick_y, speedTurn=gamepad1.right_stick_x;
-            /*speedX = slow?speedX*0.75f:speedX;
+            speedX = slow?speedX*0.75f:speedX;
             speedY = slow?speedY*0.75f:speedY;
             speedTurn = slow?speedTurn*0.75f:speedTurn;
-*/
+
             H1Motor0_FL.setPower(0);
             H1Motor1_FR.setPower(0);
             H1Motor2_BL.setPower(0);
@@ -79,14 +79,14 @@ public class M1RC34_v3 extends LinearOpMode
             clawPos=useClaw(H2Servo3_Claw, clawPos, gamepad2);
             platePos = slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, gamepad2.right_stick_y, platePos);
 
-            telemetry.addData("Plate Left: ", H2Servo0_PlateLeft.getPosition());
+            /*telemetry.addData("Plate Left: ", H2Servo0_PlateLeft.getPosition());
             telemetry.addData("Plate Right: ", H2Servo1_PlateRight.getPosition());
             telemetry.addData("Claw position: ", clawPos);
             telemetry.addData("Rotate position: ", rotatePos);
             telemetry.addData("Rotation position: ", H2Motor0_Arm.getCurrentPosition());
             telemetry.addData("Sensor range: ", ultraSensor.getDistance(DistanceUnit.CM));
 
-            telemetry.update();
+            telemetry.update();*/
         }
     }
 }

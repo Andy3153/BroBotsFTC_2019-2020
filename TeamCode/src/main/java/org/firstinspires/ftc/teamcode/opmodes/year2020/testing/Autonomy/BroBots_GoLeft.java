@@ -30,6 +30,7 @@
 package org.firstinspires.ftc.teamcode.opmodes.year2020.testing.Autonomy;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -39,6 +40,7 @@ import static org.firstinspires.ftc.teamcode.Functions.robotMovement.strafe;
 
 
 @Autonomous(name="LeftBridge", group ="Autonomy")
+@Disabled
 public class BroBots_GoLeft extends LinearOpMode {
 
     float platePos=0;
