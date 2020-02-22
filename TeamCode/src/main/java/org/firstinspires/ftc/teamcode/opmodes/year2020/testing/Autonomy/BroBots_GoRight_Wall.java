@@ -29,6 +29,7 @@
 
 package org.firstinspires.ftc.teamcode.opmodes.year2020.testing.Autonomy;
 
+import android.app.ApplicationErrorReport;
 import android.drm.DrmStore;
 import android.hardware.Sensor;
 
@@ -92,7 +93,7 @@ public class BroBots_GoRight_Wall extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        float speed = 1;
+        float speed = -1;
 
         DcMotor H1Motor0_FL = hardwareMap.get(DcMotor.class, "H1Motor0_FL");
         DcMotor H1Motor1_FR = hardwareMap.get(DcMotor.class, "H1Motor1_FR");
@@ -117,7 +118,7 @@ public class BroBots_GoRight_Wall extends LinearOpMode {
 
         if(opModeIsActive()) {
             //Do stuff
-
+/*
             //Move to plate
             move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 20);
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
@@ -156,6 +157,48 @@ public class BroBots_GoRight_Wall extends LinearOpMode {
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
             move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 400);
             strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 750);
+
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+*/
+
+            //Move to plate
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 30);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 300);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            speed /= 3;
+            robotMovement.move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed);
+
+            while (opModeIsActive() && ultraSensor.getDistance(DistanceUnit.CM) > 6.8)
+            {
+                telemetry.addData("Distance: ", ultraSensor.getDistance(DistanceUnit.CM));
+                telemetry.update();
+            }
+
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            speed*=3/1.7;
+
+            //Catch plate!
+            slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, true);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 900);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, false);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 1000);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR,  -speed, 1000);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 1575);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 1000);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+
+            //Park
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 50);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 1050);
+            stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 300);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 700);
 
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
         }

@@ -114,9 +114,9 @@ public class BroBots_GoLeft_Wall extends LinearOpMode {
             //Do stuff
 
             //Move to plate
-            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 20);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 50);
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
-            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 450);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 125);
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
             speed /= 3;
             robotMovement.move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed);
@@ -128,29 +128,29 @@ public class BroBots_GoLeft_Wall extends LinearOpMode {
             }
 
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
-            speed*=3/1.2;
+            speed*=3/1.7;
 
             //Catch plate!
             slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, true);
-            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 830);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 2000);
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
             slashKill(H2Servo0_PlateLeft, H2Servo1_PlateRight, false);
-            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 1000);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 1200);
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
-            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR,  speed, 1000);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR,  -speed, 1000);
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
-            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 750);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 1575);
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
-            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 900);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 1000);
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
 
             //Park
             move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 50);
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
-            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 800);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 1050);
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
-            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 400);
-            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 750);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, speed, 300);
+            strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 700);
 
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
         }
