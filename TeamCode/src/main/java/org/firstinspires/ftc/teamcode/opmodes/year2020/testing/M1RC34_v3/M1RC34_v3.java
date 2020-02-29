@@ -42,7 +42,18 @@ public class M1RC34_v3 extends LinearOpMode
         Servo H2Servo2_RotateClaw = hardwareMap.get(Servo.class, "H2Servo2_RotateClaw");
         Servo H2Servo3_Claw = hardwareMap.get(Servo.class, "H2Servo3_Claw");
 
-        ModernRoboticsI2cRangeSensor ultraSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "ultraSensor");
+        //ModernRoboticsI2cRangeSensor ultraSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "ultraSensor");
+
+        H1Motor0_FL.setPower(0);
+        H1Motor1_FR.setPower(0);
+        H1Motor2_BL.setPower(0);
+        H1Motor3_BR.setPower(0);
+
+        H2Motor0_Arm.setPower(0);
+        H2Servo0_PlateLeft.setPosition(1-plateMinPos);
+        H2Servo1_PlateRight.setPosition(plateMinPos);
+        H2Servo2_RotateClaw.setPosition(rotateMaxPos);
+        H2Servo3_Claw.setPosition(clawMinPos);
 
         waitForStart();
 

@@ -31,7 +31,6 @@ package org.firstinspires.ftc.teamcode.opmodes.year2020.testing.Autonomy;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -42,11 +41,9 @@ import static org.firstinspires.ftc.teamcode.Functions.Constants.clawMinPos;
 import static org.firstinspires.ftc.teamcode.Functions.Constants.plateMaxPos;
 import static org.firstinspires.ftc.teamcode.Functions.Constants.plateMinPos;
 import static org.firstinspires.ftc.teamcode.Functions.Constants.rotateMaxPos;
-import static org.firstinspires.ftc.teamcode.Functions.robotMovement.move;
-import static org.firstinspires.ftc.teamcode.Functions.robotMovement.strafe;
 
-@Autonomous(name="LeftPark", group ="Autonomy")
-public class BroBots_GoLeft extends LinearOpMode {
+@Autonomous(name="LeftParkBridge", group ="Autonomy")
+public class BroBots_GoLeftBridge extends LinearOpMode {
 
 
     public float platePos=plateMinPos;
@@ -111,7 +108,7 @@ public class BroBots_GoLeft extends LinearOpMode {
         if(opModeIsActive()) {
             //Do stuff
 
-            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 10);
+            move(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 300);
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
             strafe(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR, -speed, 800);
             stopRobot(H1Motor0_FL, H1Motor1_FR, H1Motor2_BL, H1Motor3_BR);
