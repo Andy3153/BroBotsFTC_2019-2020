@@ -1,0 +1,90 @@
+org/firstinspires/ftc/teamcode/opmodes/year2019/stable/M1RC34_v2/M1RC34_v2.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.stable.M1RC34_v2.M1RC34_v2
+org/firstinspires/ftc/teamcode/opmodes/year2020/testing/Autonomy/BroBots_GoRightBridge.java
+ org.firstinspires.ftc.teamcode.opmodes.year2020.testing.Autonomy.BroBots_GoRightBridge
+org/firstinspires/ftc/teamcode/opmodes/year2020/testing/Autonomy/BroBots_GoLeftBridge.java
+ org.firstinspires.ftc.teamcode.opmodes.year2020.testing.Autonomy.BroBots_GoLeftBridge
+org/firstinspires/ftc/teamcode/opmodes/year2020/old_testing/minim1rc34/minim1rc34.java
+ org.firstinspires.ftc.teamcode.opmodes.year2020.old_testing.minim1rc34.minim1rc34
+org/firstinspires/ftc/teamcode/opmodes/year2019/no_u/no_u.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.no_u.no_u
+org/firstinspires/ftc/teamcode/opmodes/year2020/old_testing/M1RC34_2020/servofutut.java
+ org.firstinspires.ftc.teamcode.opmodes.year2020.old_testing.M1RC34_2020.servofutut
+org/firstinspires/ftc/teamcode/opmodes/year2020/old_stable/BroBotsVuforia/BroBotsVuforia_GoRight.java
+ org.firstinspires.ftc.teamcode.opmodes.year2020.old_stable.BroBotsVuforia.BroBotsVuforia_GoRight
+org/firstinspires/ftc/teamcode/opmodes/year2019/testing/M1RC34_v2_2gp/M1RC34_v2_2gp.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.testing.M1RC34_v2_2gp.M1RC34_v2_2gp
+org/firstinspires/ftc/teamcode/opmodes/year2019/old_stable/v1_0__1gamepad/v1_0__1gamepad.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.old_stable.v1_0__1gamepad.v1_0__1gamepad
+org/firstinspires/ftc/teamcode/opmodes/year2020/old_stable/M1RC34_Sibiu/M1RC34_Sibiu.java
+ org.firstinspires.ftc.teamcode.opmodes.year2020.old_stable.M1RC34_Sibiu.M1RC34_Sibiu
+org/firstinspires/ftc/teamcode/opmodes/year2019/old/Ex4/Ex4.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.old.Ex4.Ex4
+org/firstinspires/ftc/teamcode/opmodes/year2019/old/MoveRobot_1_gamepad_stick/MoveRobot_1_gamepad_stick.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.old.MoveRobot_1_gamepad_stick.MoveRobot_1_gamepad_stick
+org/firstinspires/ftc/teamcode/opmodes/year2019/old/Ex3/Ex3.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.old.Ex3.Ex3
+org/firstinspires/ftc/teamcode/opmodes/year2019/testing/BroBotsVuforia/BroBotsVuforia_GoRight.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.testing.BroBotsVuforia.BroBotsVuforia_GoRight
+org/firstinspires/ftc/teamcode/opmodes/year2019/old/Ex1/Ex1.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.old.Ex1.Ex1
+org/firstinspires/ftc/teamcode/opmodes/year2019/old/Ex2/Ex2.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.old.Ex2.Ex2
+org/firstinspires/ftc/teamcode/opmodes/year2019/old_stable/v1_0__2gamepad/v1_0__2gamepad.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.old_stable.v1_0__2gamepad.v1_0__2gamepad
+org/firstinspires/ftc/teamcode/Functions/Constants.java
+ org.firstinspires.ftc.teamcode.Functions.Constants
+org/firstinspires/ftc/teamcode/opmodes/year2020/old_testing/TestingEverything/TestingEverything.java
+ org.firstinspires.ftc.teamcode.opmodes.year2020.old_testing.TestingEverything.TestingEverything
+org/firstinspires/ftc/teamcode/opmodes/year2020/testing/Autonomy/BroBots_GoLeft_Wall.java
+ org.firstinspires.ftc.teamcode.opmodes.year2020.testing.Autonomy.BroBots_GoLeft_Wall
+org/firstinspires/ftc/teamcode/opmodes/year2020/old_testing/M1RC34_2020/M1RC34_v2_2020.java
+ org.firstinspires.ftc.teamcode.opmodes.year2020.old_testing.M1RC34_2020.M1RC34_v2_2020
+org/firstinspires/ftc/teamcode/opmodes/year2019/old_testing/TestingServos/TestingServos.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.old_testing.TestingServos.TestingServos
+org/firstinspires/ftc/teamcode/opmodes/year2020/old_stable/M1RC34_2020/M1RC34_v2_2020.java
+ org.firstinspires.ftc.teamcode.opmodes.year2020.old_stable.M1RC34_2020.M1RC34_v2_2020
+org/firstinspires/ftc/teamcode/opmodes/year2020/old_stable/BroBotsVuforia/BroBotsVuforia_GoLeft.java
+ org.firstinspires.ftc.teamcode.opmodes.year2020.old_stable.BroBotsVuforia.BroBotsVuforia_GoLeft
+org/firstinspires/ftc/teamcode/opmodes/year2019/no_u2/no_u2.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.no_u2.no_u2
+org/firstinspires/ftc/teamcode/opmodes/year2020/testing/Autonomy/BroBots_GoRight.java
+ org.firstinspires.ftc.teamcode.opmodes.year2020.testing.Autonomy.BroBots_GoRight
+org/firstinspires/ftc/teamcode/opmodes/year2020/testing/Autonomy/BroBots_GoRight_Wall.java
+ org.firstinspires.ftc.teamcode.opmodes.year2020.testing.Autonomy.BroBots_GoRight_Wall
+org/firstinspires/ftc/teamcode/opmodes/year2020/stable/no_u/no_u.java
+ org.firstinspires.ftc.teamcode.opmodes.year2020.stable.no_u.no_u
+org/firstinspires/ftc/teamcode/opmodes/year2019/old/DriveRobot__ControlArm/DriveRobot__ControlArm.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.old.DriveRobot__ControlArm.DriveRobot__ControlArm
+org/firstinspires/ftc/teamcode/opmodes/year2019/old/MoveRobot/MoveRobot.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.old.MoveRobot.MoveRobot
+org/firstinspires/ftc/teamcode/opmodes/year2019/stable/no_u/no_u.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.stable.no_u.no_u
+org/firstinspires/ftc/teamcode/opmodes/year2020/testing/Autonomy/BroBots_GoLeft.java
+ org.firstinspires.ftc.teamcode.opmodes.year2020.testing.Autonomy.BroBots_GoLeft
+org/firstinspires/ftc/teamcode/opmodes/year2020/testing/M1RC34_v3/M1RC34_v3.java
+ org.firstinspires.ftc.teamcode.opmodes.year2020.testing.M1RC34_v3.M1RC34_v3
+org/firstinspires/ftc/teamcode/opmodes/year2019/old_testing/TestingClaw/TestingClaw.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.old_testing.TestingClaw.TestingClaw
+org/firstinspires/ftc/teamcode/opmodes/year2019/old_testing/TestingMotors/TestingMotors.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.old_testing.TestingMotors.TestingMotors
+org/firstinspires/ftc/teamcode/opmodes/year2019/old/Test/Test.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.old.Test.Test
+org/firstinspires/ftc/teamcode/opmodes/year2020/stable/no_u2/no_u2.java
+ org.firstinspires.ftc.teamcode.opmodes.year2020.stable.no_u2.no_u2
+org/firstinspires/ftc/teamcode/BuildConfig.java
+ org.firstinspires.ftc.teamcode.BuildConfig
+org/firstinspires/ftc/teamcode/Functions/robotGrabbyThings.java
+ org.firstinspires.ftc.teamcode.Functions.robotGrabbyThings
+org/firstinspires/ftc/teamcode/opmodes/year2019/testing/BroBotsVuforia/BroBotsVuforia_GoLeft.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.testing.BroBotsVuforia.BroBotsVuforia_GoLeft
+org/firstinspires/ftc/teamcode/opmodes/year2019/old_testing/DriveRobot__ControlArm_halfPwr/DriveRobot__ControlArm_halfPwr.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.old_testing.DriveRobot__ControlArm_halfPwr.DriveRobot__ControlArm_halfPwr
+org/firstinspires/ftc/teamcode/opmodes/year2019/old_testing/DriveRobot__ControlArm_halfPwr_Servos/DriveRobot__ControlArm_halfPwr_Servos.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.old_testing.DriveRobot__ControlArm_halfPwr_Servos.DriveRobot__ControlArm_halfPwr_Servos
+org/firstinspires/ftc/teamcode/opmodes/year2019/testing/M1RC34_v2__testing/M1RC34_v2__testing.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.testing.M1RC34_v2__testing.M1RC34_v2__testing
+org/firstinspires/ftc/teamcode/opmodes/year2019/testing/TestingEverything/TestingEverything.java
+ org.firstinspires.ftc.teamcode.opmodes.year2019.testing.TestingEverything.TestingEverything
+org/firstinspires/ftc/teamcode/Functions/robotMovement.java
+ org.firstinspires.ftc.teamcode.Functions.robotMovement
